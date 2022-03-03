@@ -1,7 +1,11 @@
+import CommentList from '../components/index/CommentList';
+
 const Index = () => {
 
   return (
-    <>Index</>
+    <div>
+      <CommentList />
+    </div>
   );
 }
 
