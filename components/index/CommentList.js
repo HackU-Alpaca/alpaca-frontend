@@ -1,25 +1,25 @@
 import Image from "next/image";
 
 const CommentList = props => {
-  const images = props.images;
+  const posts = props.posts;
+  const image_width = 250;
+
   const comment = "アルパカ食べたいアルパカ食べたいアルパカ食べたい"
   const sentTo = "医療従事者";
 
-  const image_width = 250;
-
   return (
     <ul>
-      {images.map( image => {
+      {posts.map( post => {
         return (
-          <li key={image.id}>
+          <li key={post.id}>
             <div>
               To <span>{sentTo}</span>
             </div>
             <Image
-              src={image.webformatURL}
-              alt={image.tags}
+              src={post.webformatURL}
+              alt={post.tags}
               width={image_width}
-              height={image.webformatHeight*image_width/image.webformatWidth}
+              height={post.webformatHeight*image_width/post.webformatWidth}
             />
             <p>{comment}</p>
           </li>

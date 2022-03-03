@@ -1,20 +1,20 @@
 import styles from '../styles/Index.module.css'
-import { useState, useEffect } from 'react';
+import useSWR from "swr";
 
-import { getImages } from '../pixabay';
+import { url, imageFetcher } from '../pixabay';
 import CommentList from '../components/index/CommentList';
 
 const Index = () => {
-  const [images, setImages] = useState({hits: []});
-  useEffect(() => {
-    getImages().then( images => setImages(images) )
-  }, [])
+  const { data, error } = useSWR(url, imageFetcher)
 
+  if (error) return <>Failed to load</>
+
+  if (!data) return <>Loading...</>
 
   return (
     <div className={styles.index_container}>
       <CommentList
-        images={images.hits}
+        posts={data}
       />
     </div>
   );
