@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const CommentList = props => {
+const PostList = props => {
   const posts = props.posts;
   const image_width = 250;
 
@@ -29,4 +29,4 @@ const CommentList = props => {
   );
 }
 
-export default CommentList;
+export default PostList;
