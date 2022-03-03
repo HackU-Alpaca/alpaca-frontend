@@ -1,0 +1,39 @@
+.container {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+  height: 150px;
+  width: 100%;
+  display: flex;
+}
+
+.container li {
+  width: 105px;
+  height: 105px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+/** image **/
+.container li >div {
+  width: inherit;
+  height: inherit;
+  border: .5px solid #f64f59;
+  border-radius: 10px;
+  padding: 1.5px;
+
+}
+.container li >span {
+  border-radius: 10px;
+  border: .5px solid black;
+}
+.container li img {
+  border-radius: 10px;
+}
+.container li p {
+  margin: 5px 0 0 0;
+  font-size: 12px;
+}
+.container li p span {
+  color: orangered;
+}

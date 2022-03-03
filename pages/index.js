@@ -1,21 +1,21 @@
-import styles from '../styles/Index.module.css'
+import styles from '../styles/index/Index.module.css'
 import useSWR from "swr";
 
-import { url, imageFetcher } from '../pixabay';
+import { fetcher } from '../pixabay';
 import PostList from '../components/index/PostList';
+import StoryList from '../components/index/StoryList';
 
 const Index = () => {
-  const { data, error } = useSWR(url, imageFetcher)
+  const { data: image_posts, error: image_error } = useSWR("images", fetcher)
+  const { data: video_posts, error: video_error} = useSWR("videos", fetcher)
 
-  if (error) return <>Failed to load</>
-
-  if (!data) return <>Loading...</>
+  if (image_error | video_error) return <>Failed to load</>
+  if (!image_posts | !video_posts) return <>Loading...</>
 
   return (
     <div className={styles.index_container}>
-      <PostList
-        posts={data}
-      />
+      <StoryList posts={video_posts} />
+      <PostList posts={image_posts} />
     </div>
   );
 }

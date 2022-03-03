@@ -1,0 +1,36 @@
+.container {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.container li {
+  width: 250px;
+  margin: 2px;
+  padding: 0px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.6);
+}
+
+/** sentTo */
+.container li >div {
+  margin: 5px 10px 0;
+}
+.container li div span {
+  color: orangered;
+}
+
+/** image **/
+/* .container li img {
+  border-radius: 20px;
+} */
+
+/** comment **/
+.container li p {
+  margin-top: 10px;
+  padding: 0 10px;
+}

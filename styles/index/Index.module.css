@@ -1,0 +1,10 @@
+.index_container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  grid-gap: 8;
+  background-color: #FAFAFA;
+}
