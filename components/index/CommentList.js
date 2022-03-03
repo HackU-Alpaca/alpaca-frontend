@@ -2,9 +2,10 @@ import Image from "next/image";
 
 const CommentList = props => {
   const images = props.images;
-  const image_width = 300;
-
   const comment = "アルパカ食べたいアルパカ食べたいアルパカ食べたい"
+  const sentTo = "医療従事者";
+
+  const image_width = 250;
 
   return (
     <ul>
@@ -12,10 +13,10 @@ const CommentList = props => {
         return (
           <li key={image.id}>
             <div>
-              To <span>医療従事者</span>
+              To <span>{sentTo}</span>
             </div>
             <Image
-              src={image.previewURL}
+              src={image.webformatURL}
               alt={image.tags}
               width={image_width}
               height={image.webformatHeight*image_width/image.webformatWidth}

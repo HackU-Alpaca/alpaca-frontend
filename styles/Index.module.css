@@ -1,0 +1,45 @@
+.index_container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  grid-gap: 8;
+  background: white;
+
+}
+
+.index_container ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.index_container ul li {
+  width: 250px;
+  margin: 2px;
+}
+
+.index_container li div span {
+  color: orangered;
+}
+
+/** image **/
+.index_container li >span {
+  border-radius: 20px;
+  box-shadow: 5px 7px 15px -2px rgba(0,0,0,0.6);
+}
+.index_container li img {
+  border-radius: 20px;
+}
+
+/** comment **/
+.index_container li p {
+  margin-top: 10px;
+  padding: 0 10px;
+}

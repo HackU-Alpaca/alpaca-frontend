@@ -5,8 +5,10 @@ const nextConfig = {
     pixabay_api_key: process.env.NEXT_PUBLIC_PIXABAY_API_KEY,
   },
   images: {
-    domains: ["cdn.pixabay.com"]
-  }
+    domains: [
+      "cdn.pixabay.com",
+      "pixabay.com",
+  ]}
 };
 
 module.exports = nextConfig;

@@ -1,3 +1,4 @@
+import styles from '../styles/Index.module.css'
 import { useState, useEffect } from 'react';
 
 import { getImages } from '../pixabay';
@@ -11,7 +12,7 @@ const Index = () => {
 
 
   return (
-    <div>
+    <div className={styles.index_container}>
       <CommentList
         images={images.hits}
       />
