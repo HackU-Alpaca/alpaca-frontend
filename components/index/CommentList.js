@@ -1,12 +1,8 @@
 import Image from "next/image";
 
 const CommentList = props => {
+  const images = props.images;
   const image_width = 300;
-  const url = "https://cdn.pixabay.com/photo/2022/02/26/16/48/flag-7036018_150.jpg"
-  const images = [
-    {id: 0, url: url},
-    {id: 1, url: url},
-  ]
 
   const comment = "アルパカ食べたいアルパカ食べたいアルパカ食べたい"
 
@@ -19,10 +15,10 @@ const CommentList = props => {
               To <span>医療従事者</span>
             </div>
             <Image
-              src={image.url}
-              alt={""}
+              src={image.previewURL}
+              alt={image.tags}
               width={image_width}
-              height={image_width}
+              height={image.webformatHeight*image_width/image.webformatWidth}
             />
             <p>{comment}</p>
           </li>
