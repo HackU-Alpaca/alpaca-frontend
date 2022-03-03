@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import styles from "../../styles/index/ImageList.module.css";
+import styles from "../../styles/index/PostList.module.css";
 
 const PostList = props => {
   const posts = props.posts;
