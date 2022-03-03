@@ -1,7 +1,14 @@
+import Layout from '../components/layouts/Layout';
 import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function App({ Component, pageProps }) {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
 }
 
-export default MyApp
+App.title = "App Title";
+
+export default App
