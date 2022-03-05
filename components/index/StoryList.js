@@ -7,23 +7,25 @@ const StoryList = props => {
   const image_width = 100;
   const sentTo = "医療従事者";
   return (
+    <div className={styles.container}>
+      <ul>
+        {posts.map( post => {
+          return (
+            <li key={post.id}>
+              <div>
+                <Image
+                  src={src}
+                  width={image_width}
+                  height={image_width}
+                />
+              </div>
+              <p><span>{sentTo}</span>の方へ</p>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
 
-    <ul className={styles.container}>
-      {posts.map( post => {
-        return (
-          <li key={post.id}>
-            <div>
-              <Image
-                src={src}
-                width={image_width}
-                height={image_width}
-              />
-            </div>
-            <p><span>{sentTo}</span>の方へ</p>
-          </li>
-        )
-      })}
-    </ul>
   )
 
 }

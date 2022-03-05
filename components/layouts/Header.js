@@ -15,9 +15,17 @@ const Header = () => {
       </Head>
 
       <header>
-        <Link href="/">
-          <a>{App.title}</a>
+        <Link href="/add">
+          <a>
+            <img src="/icons/add_icon.svg" alt="投稿" className="add-icon" />
+          </a>
         </Link>
+
+        <div>
+          <h1 className="shelby">{App.title}</h1>
+          <p className="flower-butterfly">その思い、届けてみませんか？</p>
+        </div>
+
       </header>
     </>
   );

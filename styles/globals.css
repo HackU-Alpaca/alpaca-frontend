@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Flower_Butterfly";
+  src: url(../assets/fonts/花とちょうちょ.ttf);
+}
+@font-face {
+  font-family: "Shelby";
+  src: url(../assets/fonts/Shelby.otf);
+}
+
+
 html,
 body {
   padding: 0;
@@ -15,4 +25,14 @@ a {
   box-sizing: border-box;
   user-select: none;
   -webkit-user-drag: none;
+}
+.shelby {
+  font-family: Shelby;
+}
+.flower-butterfly {
+  font-family: Flower_Butterfly;
+}
+.add-icon {
+  height: 10%;
+  width: 10%;
 }
