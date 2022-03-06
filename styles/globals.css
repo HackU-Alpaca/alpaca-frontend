@@ -41,3 +41,10 @@ a {
   width: 35px;
   transform: translate(-15px, 15px);
 }
+.cancel-icon {
+  height: 40px;
+  width: 40px;
+}
+.strong-gray {
+  color: #99A39E;;
+}

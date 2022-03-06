@@ -1,0 +1,28 @@
+.ReactModal__Overlay {
+  margin-top: 200%;
+  transition: margin-top 300ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+  margin-top: 0;
+}
+
+.ReactModal__Overlay--before-close{
+  margin-top: 200%;
+}
+
+.ReactModal__Overlay span {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  height: 40px;
+  padding-right: 10px;
+  display: flex;
+  z-index: 1000;
+}
+.ReactModal__Overlay span h3 {
+  font-weight: normal;
+  margin: 10px 0 0 5px;
+  font-size: 26px;
+  line-height: 26px;
+}
