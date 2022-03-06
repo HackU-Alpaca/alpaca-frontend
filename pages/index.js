@@ -3,19 +3,23 @@ import useSWR from "swr";
 
 import { fetcher } from '../pixabay';
 import PostList from '../components/index/PostList';
-import StoryList from '../components/index/StoryList';
+import DigestList from '../components/index/DigestList';
+
+const postFetcher = url => fetch(url).then(res => res.json())
 
 const Index = () => {
-  const { data: image_posts, error: image_error } = useSWR("images", fetcher)
+  // const { data: image_posts, error: image_error } = useSWR("images", fetcher)
+
+  const {data: posts, posts_error} = useSWR("/api/posts", postFetcher)
   const { data: video_posts, error: video_error} = useSWR("videos", fetcher)
 
-  if (image_error | video_error) return <>Failed to load</>
-  if (!image_posts | !video_posts) return <>Loading...</>
+  if (posts_error | video_error) return <>Failed to load</>
+  if (!posts | !video_posts) return <>Loading...</>
 
   return (
     <div className={styles.index_container}>
-      <StoryList posts={video_posts} />
-      <PostList posts={image_posts} />
+      <DigestList posts={video_posts} />
+      <PostList posts={posts} />
     </div>
   );
 }
