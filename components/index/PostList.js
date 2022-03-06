@@ -1,10 +1,26 @@
 import styles from "../../styles/index/PostList.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useModal } from "react-modal-hook";
+import PostModal from "../modals/PostModal";
+
 
 const PostList = props => {
   // const posts = props.posts;
-  const posts = [...Array(20)].map((_, i) => i); //TODO delete
+   //TODO delete
+  const message = "アルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたい"
+  const post_list = [
+    {sentTo_1: "医療従事者", sentTo_2: "の方", message: "いつも私たちのために最前線で働いてくださり、ありがとうございます！"},
+    {sentTo_1: "コロナに", sentTo_2: "感染した方", message: "はやく治りますように！"},
+    {sentTo_1: "飲食店に", sentTo_2: "勤務の方", message: "いつも美味しいご飯をありがとうございます。"},
+    {sentTo_1: "アルパカ", sentTo_2: "の方", message: message},
+  ]
+  const posts = [...Array(20)].map((_, i) => {
+    const j = Math.floor(Math.random() * post_list.length);
+    return post_list[j];
+  });
+  // TODO -------------------------
 
+  const [targetPost, setTargetPost] = useState("")
   const [readMoreCount, setReadMoreCount] = useState(1);
   const [cantReadMore, setCantReadMore] = useState(false);
   const num = 6; //* 一回で表示されるpostの数
@@ -17,34 +33,34 @@ const PostList = props => {
     } );
   }
 
-  // TODO delete
-  const comment = "アルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたい"
-  const post_list = [
-    {sentTo_1: "医療従事者", sentTo_2: "の方", message: "いつも私たちのために最前線で働いてくださり、ありがとうございます！"},
-    {sentTo_1: "コロナに", sentTo_2: "感染した方", message: "はやく治りますように！"},
-    {sentTo_1: "飲食店に", sentTo_2: "勤務の方", message: "いつも美味しいご飯をありがとうございます。"},
-    {sentTo_1: "アルパカ", sentTo_2: "の方", message: comment},
-  ]
-  const shown_post = posts.slice(0, readMoreCount*num);
+  const [showModal, hideModal] = useModal(() => (
+    <PostModal hideModal={hideModal} post={targetPost}/>
+  ), [targetPost])
+
+  const showDigest = event => {
+    event.preventDefault();
+    const target_node = event.currentTarget;
+    const idx = Array.from(target_node.parentNode.children).indexOf(target_node);
+    console.log(idx);
+    setTargetPost(posts[idx]);
+    showModal();
+  }
 
   return (
     <div className={styles.container}>
       <h2 className="shelby">Messages</h2>
       <ul>
-        {shown_post.map( num => {
-          //TODO Delete these lines -------
-          const i = Math.floor(Math.random() * post_list.length);
-          const post = post_list[i];
-          post.id = num;
-          //TODO---------------------------
+        {posts.slice(0, readMoreCount*num).map( (post, i) => {
           return (
-            <li key={post.id}>
-              <span className="shelby">Dear</span>
-              <h3 className="flower-butterfly">
-                {post.sentTo_1}<br />{post.sentTo_2}
-              </h3>
-              <p>{post.message}</p>
-            </li>
+            <a key={i} onClick={showDigest}>
+              <li>
+                <span className="shelby">Dear</span>
+                <h3 className="flower-butterfly">
+                  {post.sentTo_1}<br />{post.sentTo_2}
+                </h3>
+                <p>{post.message}</p>
+              </li>
+            </a>
           )
         })}
       </ul>

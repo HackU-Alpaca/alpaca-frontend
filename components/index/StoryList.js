@@ -1,6 +1,5 @@
 import styles from "../../styles/index/StoryList.module.css";
-import Link from "next/link";
-import Modal from "../Modal";
+import Modal from "../modals/DigestModal";
 import { useModal } from "react-modal-hook";
 
 const StoryList = props => {

@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 
 ReactModal.setAppElement("#__next");
 
-const Modal = props => {
+const DigestModal = props => {
   const window_width = window.innerWidth;
   const window_height = window.innerHeight;
 
@@ -92,7 +92,8 @@ const container_styles = {
   width           : '100%',
   height          : '100%',
   display         : 'flex',
-  alignItems      : 'center'
+  alignItems      : 'center',
+  textAlign       : 'center'
 }
 
 const message_styles = {
@@ -102,4 +103,4 @@ const message_styles = {
 
 }
 
-export default Modal;
+export default DigestModal;
