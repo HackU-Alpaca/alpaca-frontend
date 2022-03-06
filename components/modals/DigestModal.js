@@ -73,7 +73,8 @@ const modalStyle = {
     position        : "fixed",
     top             : 0,
     left            : 0,
-    backgroundColor : "rgba(0,0,0,0.3)"
+    backgroundColor : "rgba(50,50,50,0.8)",
+    transition      : 'margin-top 300ms ease-in-out'
   },
 
   content : {
@@ -99,13 +100,19 @@ const container_styles = {
   height          : '100%',
   display         : 'flex',
   alignItems      : 'center',
-  textAlign       : 'center'
+  textAlign       : 'center',
+  background      : '#E1FFE8',
+  background      : '-webkit-linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8)',
+  background      : 'linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8)'
 }
 
 const message_styles = {
   margin     : '0 20px',
   fontSize   : '24px',
-  flex       : "1"
+  flex       : "1",
+  color      : '#7C7C7C',
+  fontSize   : '26px',
+  fontWeight : 'bold'
 
 }
 

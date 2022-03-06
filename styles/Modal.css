@@ -1,6 +1,5 @@
 .ReactModal__Overlay {
   margin-top: 200%;
-  transition: margin-top 300ms ease-in-out;
 }
 
 .ReactModal__Overlay--after-open{
@@ -13,7 +12,7 @@
 
 .ReactModal__Overlay span {
   position: absolute;
-  top: 30px;
+  top: 25px;
   left: 20px;
   height: 40px;
   padding-right: 10px;

@@ -12,9 +12,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  color: #99A39E;
+  font-family: "メイリオ", "Arial", "MS Pゴシック";
+  color: #7C7C7C;
 }
 
 a {
@@ -46,5 +45,5 @@ a {
   width: 40px;
 }
 .strong-gray {
-  color: #99A39E;;
+  color: #7C7C7C;
 }

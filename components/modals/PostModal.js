@@ -1,4 +1,3 @@
-import Stories from "react-insta-stories"
 import ReactModal from "react-modal";
 
 ReactModal.setAppElement("#__next");
@@ -9,9 +8,11 @@ const PostModal = props => {
 
   return (
     <div>
-      <ReactModal isOpen
+      <ReactModal
+        isOpen
         style={modalStyle}
         closeTimeoutMS={300}
+        onRequestClose={props.hideModal}
       >
         <div style={container_styles}>
           <p style={message_styles}>{message}</p>
@@ -39,24 +40,18 @@ const modalStyle = {
     position        : "fixed",
     top             : 0,
     left            : 0,
-    backgroundColor : "rgba(0,0,0,0.3)"
+    backgroundColor : "rgba(50,50,50,0.8)",
   },
 
   content : {
-    top        : '0',
-    left       : '0',
-    padding    : '0',
-    border    : '0',
-    width      : '100%',
-    height     : '100%',
+    top           : '20%',
+    left          : '6%',
+    padding       : '0',
+    border        : '0',
+    width         : '88%',
+    height        : '62%',
+    borderRadius  : '10px',
   }
-}
-
-const story_styles = {
-  width           : 'auto',
-  maxWidth        : '100%',
-  maxHeight       : '100%',
-  margin          : '0'
 }
 
 const container_styles = {
@@ -65,14 +60,19 @@ const container_styles = {
   height          : '100%',
   display         : 'flex',
   alignItems      : 'center',
-  textAlign       : 'center'
+  textAlign       : 'center',
+  background      : '#E1FFE8',
+  background      : '-webkit-linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8)',
+  background      : 'linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8)'
 }
 
 const message_styles = {
   margin     : '0 20px',
   fontSize   : '24px',
-  flex       : "1"
-
+  flex       : '1',
+  color      : '#7C7C7C',
+  fontSize   : '26px',
+  fontWeight : 'bold'
 }
 
 export default PostModal;
