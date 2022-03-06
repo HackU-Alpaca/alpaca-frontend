@@ -39,16 +39,12 @@ const StoryList = props => {
         <ul>
           {story_list.map( story => {
             return (
-              // <Link
-
-              //   href={`/digest/${story.id}`}>
                 <a key={story.id} onClick={showDigest}>
                   <li className={story.target}>
                     <p>{story.sentTo_1}</p>
                     <p>{story.sentTo_2}</p>
                   </li>
                 </a>
-              // </Link>
             )
           })}
         </ul>
