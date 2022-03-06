@@ -1,9 +1,16 @@
 import Stories from "react-insta-stories"
 import ReactModal from "react-modal";
+import useSWR from "swr";
 
 ReactModal.setAppElement("#__next");
 
+const digestFetcher = url => fetch(url).then(res => res.json())
+
 const DigestModal = props => {
+  const { sentTo_1, sentTo_2, target } = props.digest;
+  const sentTo = sentTo_1 + sentTo_2;
+  console.log(target);
+
   const window_width = window.innerWidth;
   const window_height = window.innerHeight;
 
@@ -18,14 +25,13 @@ const DigestModal = props => {
     return story;
   }
 
-  // TODO delete 機能確認
-  const messages = [
-    "いつも私たしのために最前線で働いてくださり、ありがとうございます！",
-    "アルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたい"
-  ]
+  const {data: digests, error} = useSWR("/api/digests/"+target, digestFetcher)
+
+  if ( error ) return <>Failed to load</>
+  if (!digests) return <>Loading...</>
 
   const stories = Array(5).fill(0).map( () => {
-    const message = messages[Math.floor(Math.random()*messages.length)];
+    const message = digests[Math.floor(Math.random()*digests.length)];
     return createStory(message);
   })
 
@@ -53,7 +59,7 @@ const DigestModal = props => {
             onClick={props.hideModal}
           />
           <h3 className="flower-butterfly strong-gray">
-            {props.target}
+            {sentTo}
           </h3>
         </span>
 

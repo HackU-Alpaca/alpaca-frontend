@@ -3,7 +3,8 @@ import useSWR from "swr";
 
 import { fetcher } from '../pixabay';
 import PostList from '../components/index/PostList';
-import StoryList from '../components/index/StoryList';
+import DigestList from '../components/index/DigestList';
+
 const postFetcher = url => fetch(url).then(res => res.json())
 
 const Index = () => {
@@ -17,7 +18,7 @@ const Index = () => {
 
   return (
     <div className={styles.index_container}>
-      <StoryList posts={video_posts} />
+      <DigestList posts={video_posts} />
       <PostList posts={posts} />
     </div>
   );
