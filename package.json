@@ -15,8 +15,7 @@
     "react-insta-stories": "^2.3.0",
     "react-modal": "^3.14.4",
     "react-modal-hook": "^3.0.0",
-    "swr": "^1.2.2",
-    "text-to-image": "^5.2.0"
+    "swr": "^1.2.2"
   },
   "devDependencies": {
     "eslint": "8.10.0",

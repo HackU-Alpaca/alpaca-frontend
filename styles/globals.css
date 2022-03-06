@@ -42,19 +42,9 @@ a {
   transform: translate(-15px, 15px);
 }
 .cancel-icon {
-  height: 35px;
-  width: 35px;
-  /* transform: translate(-15px, 15px); */
+  height: 40px;
+  width: 40px;
 }
-/* .ReactModal__Overlay {
-  margin-top: 100%;
-  transition: margin-top 200ms ease-in-out;
+.strong-gray {
+  color: #99A39E;;
 }
-
-.ReactModal__Overlay--after-open{
-  margin-top: 0;
-}
-
-.ReactModal__Overlay--before-close{
-  margin-top: 100%;
-} */
