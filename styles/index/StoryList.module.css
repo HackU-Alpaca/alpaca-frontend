@@ -1,39 +1,68 @@
 .container {
+  width: 100%;
+  background-image: url("/images/digest-bg.svg");
+  background-size: cover;
+  padding-bottom: 40px;
+}
+.container div {
+  width: 100%;
+  overflow-x: scroll;
+  /* IE, Edge 対応 */
+  -ms-overflow-style: none;
+  /* Firefox 対応 */
+  scrollbar-width: none;
+}
+.container div ::-webkit-scrollbar {
+  display: none;
+ }
+
+.container h2 {
+  padding-left: 35px;
+  font-weight: normal;
+  font-size: 42px;
+  margin: 0 0 30px 0;
+}
+
+.container ul {
   list-style: none;
-  padding: 20px;
   margin: 0;
-  height: 150px;
+  padding: 0 30px 50px 30px;
+  height: 250px;
   width: 100%;
   display: flex;
+  gap: 18px;
+}
+.container ul >:nth-child(1){
+  background-image: url("/images/doctor.jpg");
+  background-size: cover;
+}
+.container ul >:nth-child(2){
+  background-image: url("/images/pacient.jpg");
+  background-size: cover;
+}
+.container ul >:nth-child(3){
+  background-image: url("/images/chef.jpg");
+  background-size: cover;
 }
 
 .container li {
-  width: 105px;
-  height: 105px;
+  width: 140px;
+  height: 220px;
   margin-right: 10px;
   text-align: center;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 90px 0;
 }
 
-/** image **/
-.container li >div {
-  width: inherit;
-  height: inherit;
-  border: .5px solid #f64f59;
-  border-radius: 10px;
-  padding: 1.5px;
-
-}
-.container li >span {
-  border-radius: 10px;
-  border: .5px solid black;
-}
-.container li img {
-  border-radius: 10px;
-}
 .container li p {
-  margin: 5px 0 0 0;
-  font-size: 12px;
-}
-.container li p span {
-  color: orangered;
+  width: 140px;
+  height: 220px;
+  color: white;
+  font-size: 18px;
+  line-height: 30px;
+  margin: 0;
+  background-color: rgba(100, 100, 100, .5);
 }

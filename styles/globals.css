@@ -1,9 +1,20 @@
+@font-face {
+  font-family: "Flower_Butterfly";
+  src: url(../assets/fonts/花とちょうちょ.ttf);
+}
+@font-face {
+  font-family: "Shelby";
+  src: url(../assets/fonts/Shelby.otf);
+}
+
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  color: #99A39E;
 }
 
 a {
@@ -15,4 +26,18 @@ a {
   box-sizing: border-box;
   user-select: none;
   -webkit-user-drag: none;
+}
+
+.shelby {
+  font-family: Shelby;
+  color: #BABFBC;
+}
+.flower-butterfly {
+  font-family: Flower_Butterfly;
+  color: #BABFBC;
+}
+.add-icon {
+  height: 35px;
+  width: 35px;
+  transform: translate(-15px, 15px);
 }

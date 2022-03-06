@@ -9,6 +9,6 @@ function App({ Component, pageProps }) {
   )
 }
 
-App.title = "App Title";
+App.title = "Alpaca";
 
 export default App
