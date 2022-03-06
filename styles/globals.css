@@ -27,6 +27,7 @@ a {
   user-select: none;
   -webkit-user-drag: none;
 }
+
 .shelby {
   font-family: Shelby;
   color: #BABFBC;
@@ -40,3 +41,20 @@ a {
   width: 35px;
   transform: translate(-15px, 15px);
 }
+.cancel-icon {
+  height: 35px;
+  width: 35px;
+  /* transform: translate(-15px, 15px); */
+}
+/* .ReactModal__Overlay {
+  margin-top: 100%;
+  transition: margin-top 200ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+  margin-top: 0;
+}
+
+.ReactModal__Overlay--before-close{
+  margin-top: 100%;
+} */
