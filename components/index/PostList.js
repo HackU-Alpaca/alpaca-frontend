@@ -26,10 +26,6 @@ const PostList = props => {
     {sentTo_1: "アルパカ", sentTo_2: "の方", message: comment},
   ]
   const shown_post = posts.slice(0, readMoreCount*num);
-<<<<<<< HEAD
-=======
-  console.log(shown_post);
->>>>>>> 5f18e993937504b1fc893f19a2c967b614ac1a5a
 
   return (
     <div className={styles.container}>
