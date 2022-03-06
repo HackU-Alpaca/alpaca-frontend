@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
 import Stories from "react-insta-stories"
 import ReactModal from "react-modal";
 
 ReactModal.setAppElement("#__next");
 
 const Modal = props => {
-  const [storyEnded, setStoryEnded] = useState(false);
   const window_width = window.innerWidth;
   const window_height = window.innerHeight;
 
@@ -31,12 +29,6 @@ const Modal = props => {
     return createStory(message);
   })
 
-  useEffect(() => {
-    return () => {
-      props.hideModal()
-    };
-  }, [storyEnded]);
-
   return (
     <div>
       <ReactModal isOpen
@@ -50,7 +42,7 @@ const Modal = props => {
           width={window_width}
           height={window_height}
           storyStyles={story_styles}
-          onAllStoriesEnd={() => setStoryEnded(true)}
+          onAllStoriesEnd={props.hideModal}
         />
 
         <span>
