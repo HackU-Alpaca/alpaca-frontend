@@ -1,21 +1,28 @@
 import styles from '../styles/index/Index.module.css'
 import useSWR from "swr";
 
-import { fetcher } from '../pixabay';
 import PostList from '../components/index/PostList';
 import DigestList from '../components/index/DigestList';
 
 const postFetcher = url => fetch(url).then(res => res.json())
 
 const Index = () => {
-  const {data: posts, error} = useSWR("/api/posts", postFetcher)
-
+  const {data, error} = useSWR("/api/posts", postFetcher);
   if (error) return <>Failed to load</>
-  if (!posts) return <>Loading...</>
+  if (!data) return <>Loading...</>
+
+  const { posts, sentToList } = data;
+  const digests = sentToList.map( sentTo => {
+    return {sentTo: sentTo, messages: []};
+  } );
+  posts.map( post => {
+    const dict = digests[sentToList.indexOf(post.sentTo)];
+    dict.messages = dict.messages.concat(post.message)
+  });
 
   return (
     <div className={styles.index_container}>
-      <DigestList posts={posts} />
+      <DigestList digests={digests} />
       <PostList posts={posts} display={6}/>
     </div>
   );

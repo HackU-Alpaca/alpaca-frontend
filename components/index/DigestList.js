@@ -4,24 +4,22 @@ import { useModal } from "react-modal-hook";
 import { useState } from "react";
 
 const DigestList = props => {
-  // const posts = props.posts;
-  const digest_list = [
-    {id: 1, sentTo_1: "医療従事者の", sentTo_2: "皆さん", target: "doctor"},
-    {id: 2, sentTo_1: "コロナに", sentTo_2: "感染した皆さん", target: "pacient"},
-    {id: 3, sentTo_1: "飲食店で", sentTo_2: "働く皆さん", target: "chef"},
-  ]
+  const digests = props.digests;
+  digests.map( digest => {
+    Object.assign(digest, relations[digest.sentTo])
+  });
 
-  const [targetDigest, setTargetDigest] = useState("")
+  const [chosenDigest, setChosenDigest] = useState("")
 
   const [showModal, hideModal] = useModal(() => (
-    <DigestModal hideModal={hideModal} digest={targetDigest}/>
-  ), [targetDigest])
+    <DigestModal hideModal={hideModal} digest={chosenDigest}/>
+  ), [chosenDigest])
 
   const showDigest = event => {
     event.preventDefault();
     const cls = event.currentTarget.childNodes[0].className;
-    const target_digest = digest_list.find( digest => digest.target === cls );
-    setTargetDigest(target_digest)
+    const digest = digests.find( digest => digest.name === cls );
+    setChosenDigest(digest)
     showModal();
   }
 
@@ -29,24 +27,38 @@ const DigestList = props => {
     <div className={styles.container}>
       <div>
         <h2 className="shelby">Digest</h2>
-        <ul>
-          {digest_list.map( digest => {
-            return (
-                <a key={digest.id} onClick={showDigest}>
-                  <li className={digest.target}>
+        <div>
+          <ul>
+            {digests.map( digest => {
+              return (
+                <a key={digest.name} onClick={showDigest}>
+                  <li className={digest.name}>
                     <p>{digest.sentTo_1}</p>
                     <p>{digest.sentTo_2}</p>
                   </li>
                 </a>
-            )
-          })}
-        </ul>
+              )
+            })}
+          </ul>
+        </div>
       </div>
     </div>
-
   )
-
 }
 
+const relations = {
+  "医療従事者": {
+    name: "doctor", sentTo_1: "医療従事者の", sentTo_2: "皆さん"
+  },
+  "コロナ感染者": {
+    name: "patient", sentTo_1: "コロナに", sentTo_2: "感染した皆さん"
+  },
+  "飲食店従業員": {
+    name: "chef", sentTo_1: "飲食店で", sentTo_2: "働く皆さん"
+  },
+  "アルパカ": {
+    name: "alpaca", sentTo_1: "アルパカの", sentTo_2: "皆さん"
+  },
+}
 
 export default DigestList;
