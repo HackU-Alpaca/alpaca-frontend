@@ -30,7 +30,7 @@
   height: 250px;
   width: 100%;
   display: flex;
-  gap: 18px;
+  gap: 28px;
 }
 .container ul >:nth-child(1){
   background-image: url("/images/doctor.jpg");
@@ -55,12 +55,11 @@
 
 .container a {
   border-radius: 10px;
-  margin-right: 10px;
 }
 
 .container li {
   width: 140px;
-  height: 220px;
+  height: 200px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -72,8 +71,8 @@
   width: 140px;
   height: 220px;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 30px;
   margin: 0;
-  background-color: rgba(100, 100, 100, .5);
+  background-color: rgba(100, 100, 100, .3);
 }

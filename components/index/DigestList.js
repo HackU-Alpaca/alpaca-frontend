@@ -32,9 +32,9 @@ const DigestList = props => {
             {digests.map( digest => {
               return (
                 <a key={digest.name} onClick={showDigest}>
-                  <li className={digest.name}>
-                    <p>{digest.sentTo_1}</p>
-                    <p>{digest.sentTo_2}</p>
+                  <li className={`${digest.name}`}>
+                    <p>{digest.sentTo_1}<br />
+                        {digest.sentTo_2}</p>
                   </li>
                 </a>
               )

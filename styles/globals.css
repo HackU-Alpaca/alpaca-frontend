@@ -35,6 +35,9 @@ a {
   font-family: Flower_Butterfly;
   color: #BABFBC;
 }
+.strong-gray {
+  color: #7C7C7C;
+}
 .add-icon {
   height: 35px;
   width: 35px;
@@ -48,6 +51,16 @@ a {
   height: 30px;
   width: 30px;
 }
-.strong-gray {
-  color: #7C7C7C;
+.search-icon {
+  height: 30px;
+  width: 30px;
+}
+
+.search {
+  font-family: "Shelby", "Flower_Butterfly";
+  border: 1px solid #666;
+  font-size: 18px;
+  padding: 0;
+  width: 100%;
+  height: 70%;
 }

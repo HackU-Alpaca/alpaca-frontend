@@ -1,5 +1,5 @@
 import styles from "../../styles/index/PostList.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useModal } from "react-modal-hook";
 import PostModal from "../modals/PostModal";
 import ReadMoreModal from "../modals/ReadMoreModal";
@@ -15,7 +15,8 @@ const PostList = props => {
     Object.assign(post, relations[post.sentTo])
   });
 
-  const [targetPost, setTargetPost] = useState("")
+  const [targetPost, setTargetPost] = useState("");
+  const [searching, setSearching] = useState(false);
 
   const [showPostModal, hidePostModal] = useModal(() => (
     <PostModal hideModal={hidePostModal} post={targetPost}/>
@@ -34,13 +35,44 @@ const PostList = props => {
 
   const showSortPopup = event => {
     event.preventDefault();
+    console.log("sort");
   }
+
+  const handleSearchBox = () => setSearching( prevState => !prevState );
+
+  // useEffect(() => {
+  //   document.addEventListener("click", event => {
+  //     if (!event.target.closest(".search") & (searching)) {
+  //       handleSearchBox();
+  //     }
+  //   })
+  // }, [])
+
 
   return (
     <div className={styles.container}>
       <div>
         <h2 className="shelby">Messages</h2>
         <div>
+          <div>
+            {!searching && (
+              <img
+                src="/icons/search_icon.svg"
+                alt="検索"
+                className="search-icon"
+                onClick={handleSearchBox}
+              />
+            )}
+            {searching && (
+              <input
+                className="search"
+                placeholder="Search tags"
+                type="text"
+                onBlur={handleSearchBox}
+                autoFocus
+              />
+            )}
+          </div>
           <a>
             <img
               src="/icons/sort_icon.svg"
