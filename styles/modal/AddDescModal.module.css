@@ -1,8 +1,7 @@
-.container header {
-  height: 300px;
-  /* background-image: url("/images/header-bg.svg");
-  background-size: cover; */
-  background-color: red;
+.container > div {
+  height: 420px;
+  background-image: url("/images/add-header-bg.svg");
+  background-size: cover;
 }
 .container header h1 {
   margin: 0;
@@ -10,8 +9,57 @@
 .container header h1 a {
   display: flex;
   justify-content: flex-start;
-  margin: 0 0 0 30px;
+  margin: 0 0 0 25px;
   font-size: 48px;
   font-weight: normal;
   color: #BABFBC;
+}
+.container >div >:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 60px;
+}
+
+.container >div >:nth-child(2) >p {
+  margin: 3px 0 0 0;
+  font-weight: normal;
+  font-size: 20px;
+  color: #cacaca;
+}
+.container >div >:nth-child(2) >div {
+  margin-top: 20px;
+}
+.container >div >:nth-child(2) >div >p {
+  margin: 0;
+  font-size: 13px;
+  font-family: 'Gabriola', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transform: translateY(-2px);
+  color: #cacaca;
+}
+
+/** How to send messages? 以下 */
+.how_to {
+  padding: 0;
+  margin: 70px 0 0 0;
+}
+.how_to >:nth-child(1) {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+}
+.how_to >:nth-child(1) h2 {
+  margin: 0 0 0 25px;
+  font-size: 40px;
+  font-weight: normal;
+  color: #BABFBC;
+}
+.how_to >:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0;
+  padding: 20px 0 0 0;
 }

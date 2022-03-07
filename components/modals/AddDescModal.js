@@ -4,14 +4,17 @@ import Footer from "../layouts/Footer";
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { closeModal } from "./functions";
+import Image from 'next/image';
 
 import styles from "../../styles/modal/AddDescModal.module.css";
 
 ReactModal.setAppElement("#__next");
 
 const AddDescModal = props => {
-  const line_href = ""
   const router = useRouter();
+
+  const line_href = "https://www.Alpaca.co.jp"
+  const qrcode_width = 145;
 
   const titleClicked = event => {
     event.preventDefault();
@@ -42,13 +45,27 @@ const AddDescModal = props => {
               </h1>
             </header>
 
-            <div>
+            <div className="flower-butterfly">
               <p>あなたの気持ちをお届けします。</p>
               <p>メッセージは、LINEより承っております。</p>
-              <img
-                src="/images/QR-code.png"
-                alt={"LINE QRコード"+line_href}
-              />
+              <div>
+                <Image
+                  src="/images/QR-code.png"
+                  alt={"LINE QRコード"}
+                  width={qrcode_width}
+                  height={qrcode_width}
+                />
+                <p className="shelby">{line_href}</p>
+              </div>
+            </div>
+
+            <div className={styles.how_to}>
+              <div>
+                <h2 className="shelby">How to send messages?</h2>
+              </div>
+              <div>
+                <p>Tutorial here!</p>
+              </div>
             </div>
           </div>
 
@@ -73,7 +90,7 @@ const modalStyle = {
     top        : '0',
     left       : '0',
     padding    : '0',
-    border    : '0',
+    border     : '0',
     width      : '100%',
     height     : '100%',
   }
