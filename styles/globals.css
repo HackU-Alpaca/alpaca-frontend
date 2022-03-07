@@ -44,6 +44,10 @@ a {
   height: 40px;
   width: 40px;
 }
+.sort-icon {
+  height: 30px;
+  width: 30px;
+}
 .strong-gray {
   color: #7C7C7C;
 }

@@ -18,12 +18,19 @@ export default function handler(req, res) {
 //TODO delete
 const message = "アルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたいアルパカ食べたい"
 const post_list = [
-  {sentTo: "医療従事者", message: "いつも私たちのために最前線で働いてくださり、ありがとうございます！"},
-  {sentTo: "コロナ感染者", message: "はやく治りますように！"},
-  {sentTo: "飲食店従業員", message: "いつも美味しいご飯をありがとうございます。"},
-  {sentTo: "アルパカ", message: message},
+  {
+    sentTo: "医療従事者",
+    message: "いつも私たちのために最前線で働いてくださり、ありがとうございます！"},
+  {
+    sentTo: "コロナ感染者",
+    message: "はやく治りますように！"},
+  {
+    sentTo: "飲食店従業員",
+    message: "いつも美味しいご飯をありがとうございます。"},
+  {
+    sentTo: "アルパカ",
+    message: message},
 ]
-
 
 const sentToList = [
   "医療従事者", "コロナ感染者", "飲食店従業員", "アルパカ"

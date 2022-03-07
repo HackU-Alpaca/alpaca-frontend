@@ -32,9 +32,25 @@ const PostList = props => {
     showPostModal();
   }
 
+  const showSortPopup = event => {
+    event.preventDefault();
+  }
+
   return (
     <div className={styles.container}>
-      <h2 className="shelby">Messages</h2>
+      <div>
+        <h2 className="shelby">Messages</h2>
+        <div>
+          <a>
+            <img
+              src="/icons/sort_icon.svg"
+              alt="ソート"
+              className="sort-icon"
+              onClick={showSortPopup}
+            />
+          </a>
+        </div>
+      </div>
       <ul>
         {posts.slice(0, num).map( (post, i) => {
           const { sentTo_1, sentTo_2 } = relations[post.sentTo];
