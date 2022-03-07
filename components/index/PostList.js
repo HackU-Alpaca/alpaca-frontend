@@ -49,7 +49,7 @@ const PostList = props => {
       {!cantReadMoreFlag && (
         <div align="right">
           <button
-            className="flower-butterfly"
+            className="flower-butterfly strong-gray"
             onClick={showReadMoreModal}
           >
             もっと見る

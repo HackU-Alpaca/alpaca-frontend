@@ -1,7 +1,7 @@
 import IndexLayout from '../components/layouts/IndexLayout';
 import NormalLayout from '../components/layouts/NormalLayout';
 import '../styles/globals.css'
-import "../styles/Modal.css"
+import "../styles/modal/Modal.css"
 
 import { ModalProvider } from "react-modal-hook"
 
