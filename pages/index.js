@@ -8,17 +8,14 @@ import DigestList from '../components/index/DigestList';
 const postFetcher = url => fetch(url).then(res => res.json())
 
 const Index = () => {
-  // const { data: image_posts, error: image_error } = useSWR("images", fetcher)
+  const {data: posts, error} = useSWR("/api/posts", postFetcher)
 
-  const {data: posts, posts_error} = useSWR("/api/posts", postFetcher)
-  const { data: video_posts, error: video_error} = useSWR("videos", fetcher)
-
-  if (posts_error | video_error) return <>Failed to load</>
-  if (!posts | !video_posts) return <>Loading...</>
+  if (error) return <>Failed to load</>
+  if (!posts) return <>Loading...</>
 
   return (
     <div className={styles.index_container}>
-      <DigestList posts={video_posts} />
+      <DigestList posts={posts} />
       <PostList posts={posts} display={6}/>
     </div>
   );
