@@ -2,42 +2,39 @@ import styles from "../../styles/index/PostList.module.css";
 import { useState } from "react";
 import { useModal } from "react-modal-hook";
 import PostModal from "../modals/PostModal";
+import ReadMoreModal from "../modals/ReadMoreModal";
 
 const PostList = props => {
   const posts = props.posts;
+  //* 一回で表示されるpostの数
+  const num = (props.display === "all")
+    ? posts.length : props.display;
+  const cantReadMoreFlag = (props.display === "all");
 
   const [targetPost, setTargetPost] = useState("")
-  const [readMoreCount, setReadMoreCount] = useState(1);
-  const [cantReadMore, setCantReadMore] = useState(false);
-  const num = 6; //* 一回で表示されるpostの数
-  const readMoreBtnClicked = event => {
-    event.preventDefault();
-    setReadMoreCount( prevCount => {
-      const newCount = prevCount + 1;
-      if (posts.length/num < newCount) setCantReadMore(true);
-      return newCount;
-    } );
-  }
 
-  const [showModal, hideModal] = useModal(() => (
-    <PostModal hideModal={hideModal} post={targetPost}/>
+  const [showPostModal, hidePostModal] = useModal(() => (
+    <PostModal hideModal={hidePostModal} post={targetPost}/>
   ), [targetPost])
+  const [showReadMoreModal, hideReadMoreModal] = useModal(() => (
+    <ReadMoreModal hideModal={hideReadMoreModal} posts={posts}/>
+  ), [posts])
 
-  const showDigest = event => {
+  const openPostModal = event => {
     event.preventDefault();
     const target_node = event.currentTarget;
     const idx = Array.from(target_node.parentNode.children).indexOf(target_node);
     setTargetPost(posts[idx]);
-    showModal();
+    showPostModal();
   }
 
   return (
     <div className={styles.container}>
       <h2 className="shelby">Messages</h2>
       <ul>
-        {posts.slice(0, readMoreCount*num).map( (post, i) => {
+        {posts.slice(0, num).map( (post, i) => {
           return (
-            <a key={i} onClick={showDigest}>
+            <a key={i} onClick={openPostModal}>
               <li>
                 <span className="shelby">Dear</span>
                 <h3 className="flower-butterfly">
@@ -49,11 +46,11 @@ const PostList = props => {
           )
         })}
       </ul>
-      {!cantReadMore && (
+      {!cantReadMoreFlag && (
         <div align="right">
           <button
             className="flower-butterfly"
-            onClick={readMoreBtnClicked}
+            onClick={showReadMoreModal}
           >
             もっと見る
           </button>

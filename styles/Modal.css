@@ -10,7 +10,7 @@
   margin-top: 200%;
 }
 
-.ReactModal__Overlay span {
+.ReactModal__Content > span {
   position: absolute;
   top: 25px;
   left: 20px;
@@ -19,9 +19,26 @@
   display: flex;
   z-index: 1000;
 }
-.ReactModal__Overlay span h3 {
+.ReactModal__Content span h3 {
   font-weight: normal;
   margin: 10px 0 0 5px;
   font-size: 26px;
   line-height: 26px;
+}
+
+.ReactModal__Content header {
+  height: 140px;
+  background-image: url("/images/normal-header-bg.svg");
+  background-size: cover;
+}
+.ReactModal__Content header h1 {
+  margin: 0;
+}
+.ReactModal__Content header h1 a {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 0 30px;
+  font-size: 48px;
+  font-weight: normal;
+  color: #BABFBC;
 }
