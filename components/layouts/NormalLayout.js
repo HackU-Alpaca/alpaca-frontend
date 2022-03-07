@@ -1,15 +1,14 @@
-import Header from './Header';
+import NormalHeader from './NormalHeader';
 import Footer from './Footer';
-import styles from '../../styles/index/IndexLayout.module.css';
+import styles from '../../styles/normal/NormalLayout.module.css';
 
 export default function NormalLayout({ children }) {
   return (
     <div className={styles.layout_container}>
-      {/* <Header /> */}
+      <NormalHeader />
 
       <main>{children}</main>
 
-      <Footer />
     </div>
   );
 }

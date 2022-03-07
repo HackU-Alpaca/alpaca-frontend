@@ -1,7 +1,7 @@
 import App from "../../pages/_app";
 import Link from "next/link";
 import Head from 'next/head';
-const Header = () => {
+const IndexHeader = () => {
 
   return (
     <>
@@ -31,4 +31,4 @@ const Header = () => {
   );
 }
 
-export default Header;
+export default IndexHeader;

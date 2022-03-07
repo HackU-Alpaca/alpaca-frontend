@@ -2,7 +2,6 @@
 
 export default function handler(req, res) {
   const { digest } = req.query;
-  console.log(digest);
 
   const messages = [
     "いつも私たちのために最前線で働いてくださり、ありがとうございます！",
