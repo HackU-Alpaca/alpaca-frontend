@@ -1,7 +1,13 @@
 import App from "../../pages/_app";
-import Link from "next/link";
 import Head from 'next/head';
+import AddDescModal from "../modals/AddDescModal";
+import { useModal } from "react-modal-hook";
+
 const IndexHeader = () => {
+
+  const [showAddDescModal, hideAddDescModal] = useModal(() => (
+    <AddDescModal hideModal={hideAddDescModal} />
+  ))
 
   return (
     <>
@@ -15,11 +21,14 @@ const IndexHeader = () => {
       </Head>
 
       <header>
-        <Link href="/add">
-          <a>
-            <img src="/icons/add_icon.svg" alt="投稿" className="add-icon" />
-          </a>
-        </Link>
+        <a>
+          <img
+            src="/icons/add_icon.svg"
+            alt="投稿"
+            className="add-icon"
+            onClick={showAddDescModal}
+          />
+        </a>
 
         <div>
           <h1 className="shelby">{App.title}</h1>

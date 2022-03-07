@@ -25,20 +25,3 @@
   font-size: 26px;
   line-height: 26px;
 }
-
-.ReactModal__Content header {
-  height: 140px;
-  background-image: url("/images/normal-header-bg.svg");
-  background-size: cover;
-}
-.ReactModal__Content header h1 {
-  margin: 0;
-}
-.ReactModal__Content header h1 a {
-  display: flex;
-  justify-content: flex-start;
-  margin: 0 0 0 30px;
-  font-size: 48px;
-  font-weight: normal;
-  color: #BABFBC;
-}
