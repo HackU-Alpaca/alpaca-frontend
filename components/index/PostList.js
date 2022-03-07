@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useModal } from "react-modal-hook";
 import PostModal from "../modals/PostModal";
 import ReadMoreModal from "../modals/ReadMoreModal";
+import TagList from "./TagList";
 
 const PostList = props => {
   const posts = props.posts;
@@ -17,6 +18,7 @@ const PostList = props => {
 
   const [targetPost, setTargetPost] = useState("");
   const [searching, setSearching] = useState(false);
+  const [tags, setTags] = useState([]);
 
   const [showPostModal, hidePostModal] = useModal(() => (
     <PostModal hideModal={hidePostModal} post={targetPost}/>
@@ -34,20 +36,12 @@ const PostList = props => {
   }
 
   const showSortPopup = event => {
-    event.preventDefault();
-    console.log("sort");
+    addTags("アルパカ");
   }
 
-  const handleSearchBox = () => setSearching( prevState => !prevState );
-
-  // useEffect(() => {
-  //   document.addEventListener("click", event => {
-  //     if (!event.target.closest(".search") & (searching)) {
-  //       handleSearchBox();
-  //     }
-  //   })
-  // }, [])
-
+  const addTags = tag => {
+    setTags( prevTags => prevTags.concat([tag]) );
+  }
 
   return (
     <div className={styles.container}>
@@ -60,7 +54,7 @@ const PostList = props => {
                 src="/icons/search_icon.svg"
                 alt="検索"
                 className="search-icon"
-                onClick={handleSearchBox}
+                onClick={() => setSearching(true)}
               />
             )}
             {searching && (
@@ -68,21 +62,22 @@ const PostList = props => {
                 className="search"
                 placeholder="Search tags"
                 type="text"
-                onBlur={handleSearchBox}
+                onBlur={() => setSearching(false)}
                 autoFocus
               />
             )}
           </div>
-          <a>
-            <img
-              src="/icons/sort_icon.svg"
-              alt="ソート"
-              className="sort-icon"
-              onClick={showSortPopup}
-            />
-          </a>
+          <img
+            src="/icons/sort_icon.svg"
+            alt="ソート"
+            className="sort-icon"
+            onClick={showSortPopup}
+          />
         </div>
       </div>
+
+      {!!tags.length && <TagList tags={tags} />}
+
       <ul>
         {posts.slice(0, num).map( (post, i) => {
           const { sentTo_1, sentTo_2 } = relations[post.sentTo];

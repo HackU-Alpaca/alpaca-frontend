@@ -1,0 +1,15 @@
+.container {
+  height: 20px;
+  width: 100%;
+  background-color: red;
+
+}
+.container ul {
+  display: flex;
+  flex-direction: row;
+}
+.container ul li {
+  padding: 0;
+  height: 20px;
+  width: fit-content;
+}
