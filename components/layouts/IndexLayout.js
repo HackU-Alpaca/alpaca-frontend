@@ -1,8 +1,8 @@
 import Header from './Header';
 import Footer from './Footer';
-import styles from '../../styles/Layout.module.css';
+import styles from '../../styles/index/IndexLayout.module.css';
 
-export default function Layout({ children }) {
+export default function IndexLayout({ children }) {
   return (
     <div className={styles.layout_container}>
       <Header />

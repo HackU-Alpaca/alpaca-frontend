@@ -24,4 +24,6 @@ const Index = () => {
   );
 }
 
+Index.layout = "index";
+
 export default Index;
