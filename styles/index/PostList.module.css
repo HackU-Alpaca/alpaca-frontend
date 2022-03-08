@@ -2,14 +2,29 @@
   width: 100%;
   background-color: white;
 }
-.container h2 {
+.container >:nth-child(1) {
+  display: flex;
+  margin: 0 30px 25px 0;
+}
+.container >:nth-child(1) >h2 {
   padding-left: 35px;
   font-weight: normal;
   font-size: 42px;
-  margin: 0 0 25px 0;
+  margin: 0;
 }
 
-.container ul {
+/** Messages設定 */
+.container >:first-child >div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  transform: translateY(20px);
+  width: 100%;
+  margin: 0;
+}
+
+/** Posts */
+.container >ul {
   list-style: none;
   margin: 0;
   display: flex;
@@ -19,36 +34,32 @@
   gap: 15px;
 }
 
-.container a {
+.container >ul li {
   height: 230px;
   width: 45%;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   border-radius: 10px;
   background: #E1FFE8;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
-.container li {
-  padding: 10px;
   display: grid;
   grid-template-areas: "dear    target"
                        "message message";
   grid-template-rows: 40px 1fr;
   grid-template-columns: 35px 1fr;
 }
-.container li span {
+.container >ul li span {
   grid-area: dear;
   font-size: 24px;
 }
-.container li h3 {
+.container >ul li h3 {
   grid-area: target;
   margin: 0;
   color: #99A39E;
   text-align: center;
 }
-.container li p {
+.container >ul li p {
   grid-area: message;
   font-weight: bold;
   height: 145px;
@@ -57,10 +68,10 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 6;
 }
-.container div {
+.container >div:last-child {
   margin: 25px 30px 0 0;
 }
-.container div button {
+.container >:last-child button {
   background-color: transparent;
   border: none;
   outline: none;

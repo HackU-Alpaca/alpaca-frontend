@@ -1,25 +1,29 @@
 import styles from '../styles/index/Index.module.css'
 import useSWR from "swr";
 
-import { fetcher } from '../pixabay';
 import PostList from '../components/index/PostList';
 import DigestList from '../components/index/DigestList';
 
 const postFetcher = url => fetch(url).then(res => res.json())
 
 const Index = () => {
-  // const { data: image_posts, error: image_error } = useSWR("images", fetcher)
+  const {data, error} = useSWR("/api/posts", postFetcher);
+  if (error) return <>Failed to load</>
+  if (!data) return <>Loading...</>
 
-  const {data: posts, posts_error} = useSWR("/api/posts", postFetcher)
-  const { data: video_posts, error: video_error} = useSWR("videos", fetcher)
-
-  if (posts_error | video_error) return <>Failed to load</>
-  if (!posts | !video_posts) return <>Loading...</>
+  const { posts, sentToList } = data;
+  const digests = sentToList.map( sentTo => {
+    return {sentTo: sentTo, messages: []};
+  } );
+  posts.map( post => {
+    const dict = digests[sentToList.indexOf(post.sentTo)];
+    dict.messages = dict.messages.concat(post.message)
+  });
 
   return (
     <div className={styles.index_container}>
-      <DigestList posts={video_posts} />
-      <PostList posts={posts} display={6}/>
+      <DigestList digests={digests} />
+      <PostList posts={posts} display={6} sentToList={sentToList}/>
     </div>
   );
 }

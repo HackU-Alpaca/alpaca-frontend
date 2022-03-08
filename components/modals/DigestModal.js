@@ -1,15 +1,12 @@
 import Stories from "react-insta-stories"
 import ReactModal from "react-modal";
-import useSWR from "swr";
+import { closeModal } from "./functions";
 
 ReactModal.setAppElement("#__next");
 
-const digestFetcher = url => fetch(url).then(res => res.json())
-
 const DigestModal = props => {
-  const { sentTo_1, sentTo_2, target } = props.digest;
+  const { sentTo_1, sentTo_2, messages } = props.digest;
   const sentTo = sentTo_1 + sentTo_2;
-  console.log(target);
 
   const window_width = window.innerWidth;
   const window_height = window.innerHeight;
@@ -24,16 +21,7 @@ const DigestModal = props => {
     }
     return story;
   }
-
-  const {data: digests, error} = useSWR("/api/digests/"+target, digestFetcher)
-
-  if ( error ) return <>Failed to load</>
-  if (!digests) return <>Loading...</>
-
-  const stories = Array(5).fill(0).map( () => {
-    const message = digests[Math.floor(Math.random()*digests.length)];
-    return createStory(message);
-  })
+  const stories = messages.map( message => createStory(message) );
 
   return (
     <div>
@@ -48,7 +36,7 @@ const DigestModal = props => {
           width={window_width}
           height={window_height}
           storyStyles={story_styles}
-          onAllStoriesEnd={props.hideModal}
+          onAllStoriesEnd={() => closeModal(props.hideModal)}
         />
 
         <span>
@@ -56,7 +44,7 @@ const DigestModal = props => {
             src="/icons/cancel_icon.svg"
             alt="戻る"
             className="cancel-icon"
-            onClick={props.hideModal}
+            onClick={() => closeModal(props.hideModal)}
           />
           <h3 className="flower-butterfly strong-gray">
             {sentTo}

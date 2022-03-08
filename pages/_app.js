@@ -11,7 +11,6 @@ const layouts = {
 }
 
 function App({ Component, pageProps }) {
-  console.log(Component.layout);
   const Layout = layouts[Component.layout] || layouts["normal"];
 
   return (

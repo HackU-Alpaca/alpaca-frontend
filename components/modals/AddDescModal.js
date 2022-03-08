@@ -1,7 +1,6 @@
 import App from "../../pages/_app";
 import ReactModal from "react-modal";
 import Footer from "../layouts/Footer";
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { closeModal } from "./functions";
 import Image from 'next/image';
@@ -13,7 +12,7 @@ ReactModal.setAppElement("#__next");
 const AddDescModal = props => {
   const router = useRouter();
 
-  const line_href = "https://www.Alpaca.co.jp"
+  const line_href = "https://line.me/R/ti/p/%40044efyoc"
   const qrcode_width = 145;
 
   const titleClicked = event => {
@@ -45,17 +44,24 @@ const AddDescModal = props => {
               </h1>
             </header>
 
-            <div className="flower-butterfly">
-              <p>あなたの気持ちをお届けします。</p>
-              <p>メッセージは、LINEより承っております。</p>
+            <div>
+              <p className="flower-butterfly">
+                あなたの気持ちをお届けします。<br />
+                メッセージは、LINEより承っております。
+              </p>
               <div>
-                <Image
-                  src="/images/QR-code.png"
-                  alt={"LINE QRコード"}
-                  width={qrcode_width}
-                  height={qrcode_width}
-                />
-                <p className="shelby">{line_href}</p>
+                <a href={line_href} target="_blank" rel="noopener noreferrer">
+                  <Image
+                    src="/images/QR-code.png"
+                    alt={"LINE QRコード"}
+                    width={qrcode_width}
+                    height={qrcode_width}
+                  />
+                </a>
+                <p>
+                  <span>QR</span>
+                  <span className="flower-butterfly">コードをタッチ</span>
+                </p>
               </div>
             </div>
 

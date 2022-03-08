@@ -8,7 +8,7 @@ import styles from "../../styles/modal/ReadMoreModal.module.css"
 ReactModal.setAppElement("#__next");
 
 const ReadMoreModal = props => {
-  const posts = props.posts;
+  const { posts, sentToList } = props;
 
   return (
     <div>
@@ -18,7 +18,7 @@ const ReadMoreModal = props => {
       >
         <div className={styles.contents}>
           <NormalHeader hideModal={props.hideModal} />
-          <PostList posts={posts} display={"all"}/>
+          <PostList posts={posts} sentToList={sentToList} display={"all"}/>
           <Footer />
         </div>
 
