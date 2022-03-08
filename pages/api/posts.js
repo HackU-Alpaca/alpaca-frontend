@@ -5,6 +5,18 @@ export default function handler(req, res) {
     const j = Math.floor(Math.random() * post_list.length);
     return post_list[j];
   });
+  const shuffleArray = arr => {
+    arr.sort(()=> Math.random() - 0.5);
+  }
+  posts.map( post => {
+    const num_list = Array(12).fill(0).map((_, i) => i+1);
+    shuffleArray(num_list);
+    const nums = num_list.map(num => {
+      return (num<=9) ? "0"+num : String(num);
+    })
+    const createdAt = `20${nums[0]}-${nums[1]}-${nums[2]}T${nums[3]}:${nums[4]}:${nums[5]}.000Z`
+    post.createdAt = createdAt;
+  })
 
   const cast_data = {
     posts: posts,

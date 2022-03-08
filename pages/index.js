@@ -3,6 +3,7 @@ import useSWR from "swr";
 
 import PostList from '../components/index/PostList';
 import DigestList from '../components/index/DigestList';
+import {sort_by_time} from "../components/index/sort_functions";
 
 const postFetcher = url => fetch(url).then(res => res.json())
 
@@ -12,6 +13,11 @@ const Index = () => {
   if (!data) return <>Loading...</>
 
   const { posts, sentToList } = data;
+  posts.map(post => {
+    if (typeof(post.createdAt) !== "string") return ;
+    const iso_format = post.createdAt.split('.')[0];
+    post.createdAt = new Date(iso_format);
+  })
   const digests = sentToList.map( sentTo => {
     return {sentTo: sentTo, messages: []};
   } );
