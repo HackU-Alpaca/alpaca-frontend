@@ -1,10 +1,10 @@
-const sort_by_time = (posts, flag="latest") => {
+const sorter = (posts, by_item, order="ascending") => {
   posts.sort( (a, b) => {
-    switch (flag) {
-      case "latest":
-        return (a.createdAt < b.createdAt) ? 1 : -1;
-      case "oldest":
-        return (a.createdAt > b.createdAt) ? 1 : -1;
+    switch (order) {
+      case "ascending":
+        return (a[by_item] < b[by_item]) ? 1 : -1;
+      case "descending":
+        return (a[by_item] > b[by_item]) ? 1 : -1;
       default:
         break;
     }
@@ -12,4 +12,4 @@ const sort_by_time = (posts, flag="latest") => {
   return posts;
 }
 
-export { sort_by_time };
+export { sorter };

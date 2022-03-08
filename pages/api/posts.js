@@ -14,8 +14,9 @@ export default function handler(req, res) {
     const nums = num_list.map(num => {
       return (num<=9) ? "0"+num : String(num);
     })
-    const createdAt = `20${nums[0]}-${nums[1]}-${nums[2]}T${nums[3]}:${nums[4]}:${nums[5]}.000Z`
+    const createdAt = `20${nums[0]}-${nums[1]}-${nums[2]}T${nums[3]}:${nums[4]}:${nums[5]}.000Z`;
     post.createdAt = createdAt;
+    post.likes = Math.floor(Math.random()*1000);
   })
 
   const cast_data = {
