@@ -1,5 +1,4 @@
 import styles from "../../styles/index/PostList.module.css";
-import tag_styles from "../../styles/index/TagList.module.css";
 import { useEffect, useState } from "react";
 import { useModal } from "react-modal-hook";
 import PostModal from "../modals/PostModal";
@@ -14,6 +13,7 @@ const PostList = props => {
     ? posts.length : props.display;
   const cantReadMoreFlag = (props.display === "all");
   posts.map(post => Object.assign(post, relations[post.sentTo]));
+  const [query, setQuery] = useState("");
   const [targetPost, setTargetPost] = useState("");
   const [searching, setSearching] = useState(false);
   let tag_info = {};
@@ -68,7 +68,14 @@ const PostList = props => {
   const active_tags = Object.keys(tagInfo).filter( tag => {
     return tagInfo[tag] === "active";
   })
-  const shown_posts = posts.filter( post => active_tags.includes(post.sentTo) );
+  let shown_posts = posts.filter( post => active_tags.includes(post.sentTo) );
+  //* 検索ワードでフィルター
+  shown_posts = shown_posts.filter(post => {
+    const sentTo = post.sentTo_1 + post.sentTo_2;
+    return (sentTo.indexOf(query) >= 0)
+      || (post.sentTo.indexOf(query) >= 0)
+      || (post.message.indexOf(query) >= 0)
+  })
 
   return (
     <div className={styles.container}>
@@ -92,7 +99,10 @@ const PostList = props => {
             />
           )}
           {searching && (
-            <SearchBox close={() => setSearching(false)} />
+            <SearchBox
+              close={() => setSearching(false)}
+              setQuery={setQuery}
+            />
           )}
           <img
             src="/icons/sort_icon.svg"

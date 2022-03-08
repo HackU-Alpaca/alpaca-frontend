@@ -2,12 +2,11 @@ import { useState, useCallback, useEffect } from "react";
 
 import styles from "../../styles/index/Search.module.css";
 
-const SearchBox = props => {
-  const [query, setQuery] = useState('');
+const SearchBox = props => {;
 
   const onChange = useCallback( event => {
     const newQuery = event.target.value;
-    setQuery(newQuery);
+    props.setQuery(newQuery);
   }, [])
 
   return (
