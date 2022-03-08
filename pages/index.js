@@ -23,7 +23,7 @@ const Index = () => {
   return (
     <div className={styles.index_container}>
       <DigestList digests={digests} />
-      <PostList posts={posts} display={6}/>
+      <PostList posts={posts} display={6} sentToList={sentToList}/>
     </div>
   );
 }

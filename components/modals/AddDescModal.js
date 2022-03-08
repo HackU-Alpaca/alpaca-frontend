@@ -1,7 +1,6 @@
 import App from "../../pages/_app";
 import ReactModal from "react-modal";
 import Footer from "../layouts/Footer";
-import Link from "next/link";
 import { useRouter } from 'next/router';
 import { closeModal } from "./functions";
 import Image from 'next/image';

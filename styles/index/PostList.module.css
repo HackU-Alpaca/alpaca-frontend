@@ -12,7 +12,9 @@
   font-size: 42px;
   margin: 0;
 }
-.container >:nth-child(1) >div {
+
+/** Messages設定 */
+.container >:first-child >div {
   display: flex;
   justify-content: flex-end;
   gap: 5px;
@@ -21,7 +23,8 @@
   margin: 0;
 }
 
-.container ul {
+/** Posts */
+.container >ul {
   list-style: none;
   margin: 0;
   display: flex;
@@ -31,19 +34,15 @@
   gap: 15px;
 }
 
-.container >ul a {
+.container >ul li {
   height: 230px;
   width: 45%;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   border-radius: 10px;
   background: #E1FFE8;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-}
-.container >ul li {
-  padding: 10px;
   display: grid;
   grid-template-areas: "dear    target"
                        "message message";
@@ -69,10 +68,10 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 6;
 }
-.container >:nth-child(3) {
+.container >div:last-child {
   margin: 25px 30px 0 0;
 }
-.container >:nth-child(3) button {
+.container >:last-child button {
   background-color: transparent;
   border: none;
   outline: none;

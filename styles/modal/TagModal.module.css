@@ -1,9 +1,20 @@
 .container {
-  height: fit-content;
-  width: calc(100% - 40px);
-  margin: 0 20px 8px;
+  margin: 0;
   padding: 0;
   display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container >h3 {
+  margin: 0;
+}
+.container >div {
+  margin: 10px 0 0 0;
+  padding: 5px;
+  border-radius: 10px;
+  height: 100%;
+  background-color: white;
 }
 
 .container ul {
@@ -27,15 +38,12 @@
   line-height: 20px;
   margin: 0;
 }
-.container ul li img {
-  margin: 0;
-}
-.active {
+.container ul li.active {
   background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
   background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
   border: .5px #c0c0c0 solid;
 }
-.inactive {
+.container ul li.inactive {
   background-color: unset;
   border: .5px #7C7C7C solid;
 }
