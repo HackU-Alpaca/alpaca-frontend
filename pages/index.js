@@ -1,9 +1,9 @@
 import styles from '../styles/index/Index.module.css'
 import useSWR from "swr";
-import Skeleton from 'react-loading-skeleton';
 
 import PostList from '../components/index/PostList';
 import DigestList from '../components/index/DigestList';
+import SkeletonIndex from '../components/skeletons/SkeletonIndex';
 
 const postFetcher = url => fetch(url).then(res => res.json())
 
@@ -11,9 +11,8 @@ const Index = () => {
   //* Postsデータ取得
   const {data, error} = useSWR("/api/posts", postFetcher);
   if (error) return <>Failed to load</>
-  if (!data) return (
-    <h1>{undefined || <Skeleton />}</h1>
-  )
+  if (!data) return <SkeletonIndex />
+  // return <SkeletonIndex />
 
   const { posts, sentToList } = data;
   posts.map(post => {

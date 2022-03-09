@@ -1,5 +1,5 @@
 .ReactModal__Overlay {
-  margin-top: 200%;
+  margin-top: 250%;
 }
 
 .ReactModal__Overlay--after-open{
@@ -7,7 +7,7 @@
 }
 
 .ReactModal__Overlay--before-close{
-  margin-top: 200%;
+  margin-top: 250%;
 }
 
 .ReactModal__Body--open {

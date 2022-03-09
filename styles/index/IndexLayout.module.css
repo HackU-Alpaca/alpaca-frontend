@@ -4,6 +4,7 @@
   flex-direction: column;
   background-image: url("/images/index-bg.svg");
   background-size: contain;
+  background-repeat: no-repeat;
   height: 100%;
   width: 100%;
 

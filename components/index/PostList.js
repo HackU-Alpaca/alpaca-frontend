@@ -139,7 +139,8 @@ const PostList = props => {
         </div>
       </div>
 
-      {Object.values(tagInfo).includes('active') && (
+      {/* タグ表示 */}
+      {(props.display === "all") && Object.values(tagInfo).includes('active') && (
         <TagList
           tagInfo={tagInfo}
           updateTagInfo={updateTagInfo}
