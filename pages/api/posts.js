@@ -1,22 +1,25 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default function handler(req, res) {
-  const posts = [...Array(20)].map((_, i) => {
+  const fetched_posts = [...Array(20)].map((_, i) => {
     const j = Math.floor(Math.random() * post_list.length);
     return post_list[j];
   });
-  const shuffleArray = arr => {
+  const shuffled = arr => {
     arr.sort(()=> Math.random() - 0.5);
+    return arr;
   }
-  posts.map( post => {
+  let posts = [];
+  fetched_posts.map( (post, i) => {
     const num_list = Array(12).fill(0).map((_, i) => i+1);
-    shuffleArray(num_list);
-    const nums = num_list.map(num => {
+    const nums = shuffled(num_list).map(num => {
       return (num<=9) ? "0"+num : String(num);
     })
     const createdAt = `20${nums[0]}-${nums[1]}-${nums[2]}T${nums[3]}:${nums[4]}:${nums[5]}.000Z`;
-    post.createdAt = createdAt;
-    post.likes = Math.floor(Math.random()*1000);
+    const new_data = {
+      createdAt:createdAt, likes: Math.floor(Math.random()*1000)
+    }
+    posts[i] = {...post, ...new_data};
   })
 
   const cast_data = {

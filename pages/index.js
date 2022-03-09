@@ -7,15 +7,17 @@ import DigestList from '../components/index/DigestList';
 const postFetcher = url => fetch(url).then(res => res.json())
 
 const Index = () => {
+  //* Postsデータ取得
   const {data, error} = useSWR("/api/posts", postFetcher);
   if (error) return <>Failed to load</>
   if (!data) return <>Loading...</>
 
   const { posts, sentToList } = data;
   posts.map(post => {
-    if (typeof(post.createdAt) !== "string") return ;
-    const iso_format = post.createdAt.split('.')[0];
-    post.createdAt = new Date(iso_format);
+    if (typeof(post.createdAt) === "string") {
+      const iso_format = post.createdAt.split('.')[0];
+      post.createdAt = new Date(iso_format);
+    }
   })
   const digests = sentToList.map( sentTo => {
     return {sentTo: sentTo, messages: []};
