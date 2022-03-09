@@ -39,7 +39,7 @@ const SortModal = props => {
         isOpen
         style={modalStyle}
         closeTimeoutMS={300}
-        onRequestClose={closeModal}
+        onRequestClose={props.hideModal}
       >
         <div className={styles.container}>
           <ul>
