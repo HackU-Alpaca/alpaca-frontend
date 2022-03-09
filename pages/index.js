@@ -3,7 +3,6 @@ import useSWR from "swr";
 
 import PostList from '../components/index/PostList';
 import DigestList from '../components/index/DigestList';
-import {sort_by_time} from "../components/index/sort_functions";
 
 const postFetcher = url => fetch(url).then(res => res.json())
 

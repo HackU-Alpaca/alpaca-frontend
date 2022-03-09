@@ -1,10 +1,10 @@
-const sorter = (posts, by_item, order="ascending") => {
+const sorter = (posts, order_by, ascending=true) => {
   posts.sort( (a, b) => {
-    switch (order) {
-      case "ascending":
-        return (a[by_item] < b[by_item]) ? 1 : -1;
-      case "descending":
-        return (a[by_item] > b[by_item]) ? 1 : -1;
+    switch (ascending) {
+      case true:
+        return (a[order_by] > b[order_by]) ? 1 : -1;
+      case false:
+        return (a[order_by] < b[order_by]) ? 1 : -1;
       default:
         break;
     }
