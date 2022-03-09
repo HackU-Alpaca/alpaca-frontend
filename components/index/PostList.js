@@ -60,8 +60,9 @@ const PostList = props => {
     showPostModal();
   }
 
-  const openSortModals = () => {
-    const { left, bottom } = document.getElementsByClassName("sort-icon")[0].getBoundingClientRect();
+  const openSortModals = event => {
+    const { left, bottom } = event.target.getBoundingClientRect();
+    console.log(event);
     setSortModalStyle({
       top           : bottom+'px',
       left          : (left-80)+'px',
