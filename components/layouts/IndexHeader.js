@@ -1,6 +1,6 @@
 import App from "../../pages/_app";
 import Head from 'next/head';
-import AddDescModal from "../modals/AddDescModal";
+import { AddDescModal } from "../modals/";
 import { useModal } from "react-modal-hook";
 
 const IndexHeader = () => {

@@ -1,10 +1,7 @@
 import styles from "../../styles/index/PostList.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useModal } from "react-modal-hook";
-import PostModal from "../modals/PostModal";
-import ReadMoreModal from "../modals/ReadMoreModal";
-import TagModal from "../modals/TagModal";
-import SortModal from "../modals/SortModal";
+import { PostModal, ReadMoreModal, TagModal, SortModal } from "../modals";
 import TagList from "./TagList";
 import SearchBox from "./SearchBox";
 import { sorter } from "./sort_functions";
