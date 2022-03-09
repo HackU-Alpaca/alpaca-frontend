@@ -58,6 +58,7 @@
   margin: 0;
   color: #99A39E;
   text-align: center;
+  font-size: 18px;
 }
 .container >ul li p {
   grid-area: message;

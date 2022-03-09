@@ -12,6 +12,11 @@ const Index = () => {
   if (!data) return <>Loading...</>
 
   const { posts, sentToList } = data;
+  posts.map(post => {
+    if (typeof(post.createdAt) !== "string") return ;
+    const iso_format = post.createdAt.split('.')[0];
+    post.createdAt = new Date(iso_format);
+  })
   const digests = sentToList.map( sentTo => {
     return {sentTo: sentTo, messages: []};
   } );

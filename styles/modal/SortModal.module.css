@@ -1,0 +1,36 @@
+.container {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: #E1FFE8;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.container ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.container ul li {
+  padding: 0 0 0 4px;
+  height: 25px;
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+}
+.container ul li p {
+  white-space: nowrap;
+  font-size: 16px;
+  line-height: 25px;
+  margin: 0;
+}
+.chosen {
+  color: #7C7C7C;
+  background-color: rgba(200, 200, 200, .3);
+}

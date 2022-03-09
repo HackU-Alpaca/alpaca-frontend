@@ -1,12 +1,13 @@
 import styles from "../../styles/index/PostList.module.css";
-import tag_styles from "../../styles/index/TagList.module.css";
 import { useEffect, useState } from "react";
 import { useModal } from "react-modal-hook";
 import PostModal from "../modals/PostModal";
 import ReadMoreModal from "../modals/ReadMoreModal";
 import TagModal from "../modals/TagModal";
+import SortModal from "../modals/SortModal";
 import TagList from "./TagList";
 import SearchBox from "./SearchBox";
+import { sorter } from "./sort_functions";
 
 const PostList = props => {
   const { posts, sentToList } = props;
@@ -14,11 +15,16 @@ const PostList = props => {
     ? posts.length : props.display;
   const cantReadMoreFlag = (props.display === "all");
   posts.map(post => Object.assign(post, relations[post.sentTo]));
+  const [query, setQuery] = useState("");
   const [targetPost, setTargetPost] = useState("");
   const [searching, setSearching] = useState(false);
   let tag_info = {};
   sentToList.map( sentTo => tag_info[sentTo] = "active" );
   const [tagInfo, setTagInfo] = useState(tag_info);
+  const [sortInfo, setSortInfo] = useState({
+    order_by: "createdAt", ascending: false
+  });
+  const [sortModalStyle, setSortModalStyle] = useState({});
 
   //* モーダル設定
   const [showPostModal, hidePostModal] = useModal(() => (
@@ -41,6 +47,14 @@ const PostList = props => {
       updateTagInfo={updateTagInfo}
     />
   ), [tagInfo])
+  const [showSortModal, hideSortModal] = useModal(() => (
+    <SortModal
+      hideModal={hideSortModal}
+      sortInfo={sortInfo}
+      setSortInfo={setSortInfo}
+      sortModalStyle={sortModalStyle}
+    />
+  ), [sortInfo, sortModalStyle])
 
   const openPostModal = event => {
     const target_node = event.currentTarget;
@@ -49,8 +63,15 @@ const PostList = props => {
     showPostModal();
   }
 
-  const showModals = which => {
-    console.log(which); //TODO
+  const openSortModals = () => {
+    const { left, bottom } = document.getElementsByClassName("sort-icon")[0].getBoundingClientRect();
+    setSortModalStyle({
+      top           : bottom+'px',
+      left          : (left-80)+'px',
+      width         : '120px',
+      height        : '75px',
+    })
+    showSortModal()
   }
 
   //* タグ設定
@@ -68,7 +89,18 @@ const PostList = props => {
   const active_tags = Object.keys(tagInfo).filter( tag => {
     return tagInfo[tag] === "active";
   })
-  const shown_posts = posts.filter( post => active_tags.includes(post.sentTo) );
+  let shown_posts = posts.filter( post => active_tags.includes(post.sentTo) );
+  //* 検索ワードでフィルター
+  shown_posts = shown_posts.filter(post => {
+    const sentTo = post.sentTo_1 + post.sentTo_2;
+    return (sentTo.indexOf(query) >= 0)
+      || (post.sentTo.indexOf(query) >= 0)
+      || (post.message.indexOf(query) >= 0)
+  })
+  //* createdAt or likesでソート
+  shown_posts = sorter(shown_posts, sortInfo.order_by, sortInfo.ascending)
+  const order = (sortInfo.ascending) ? "ascending" : "descending";
+  const sort_icon_url = `/icons/sort_by_${sortInfo.order_by}_${order}.svg`;
 
   return (
     <div className={styles.container}>
@@ -92,13 +124,17 @@ const PostList = props => {
             />
           )}
           {searching && (
-            <SearchBox close={() => setSearching(false)} />
+            <SearchBox
+              close={() => setSearching(false)}
+              setQuery={setQuery}
+              query={query}
+            />
           )}
           <img
-            src="/icons/sort_icon.svg"
+            src={sort_icon_url}
             alt="ソート"
             className="sort-icon"
-            onClick={() => showModals("sort")}
+            onClick={openSortModals}
           />
         </div>
       </div>
