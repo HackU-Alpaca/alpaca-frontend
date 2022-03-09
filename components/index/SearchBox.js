@@ -1,13 +1,21 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 
 import styles from "../../styles/index/Search.module.css";
 
 const SearchBox = props => {;
+  const [tempQuery, setTempQuery] = useState(props.query);
 
   const onChange = useCallback( event => {
     const newQuery = event.target.value;
-    props.setQuery(newQuery);
+    setTempQuery(newQuery);
   }, [])
+
+  const onEnterKeyDown = event => {
+    if (event.key === "Enter") {
+      props.setQuery(tempQuery);
+      // props.close();
+    }
+  }
 
   return (
 
@@ -23,6 +31,7 @@ const SearchBox = props => {;
         type="text"
         onBlur={props.close}
         onChange={onChange}
+        onKeyDown={onEnterKeyDown}
         autoFocus
       />
     </div>

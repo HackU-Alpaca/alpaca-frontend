@@ -127,6 +127,7 @@ const PostList = props => {
             <SearchBox
               close={() => setSearching(false)}
               setQuery={setQuery}
+              query={query}
             />
           )}
           <img
