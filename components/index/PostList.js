@@ -59,7 +59,7 @@ const PostList = props => {
   const openPostModal = event => {
     const target_node = event.currentTarget;
     const idx = Array.from(target_node.parentNode.children).indexOf(target_node);
-    setTargetPost(posts[idx]);
+    setTargetPost(shown_posts[idx]);
     showPostModal();
   }
 
