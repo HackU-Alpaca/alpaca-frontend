@@ -1,18 +1,20 @@
-import styles from '../styles/index/Index.module.css'
+import styles from '../styles/index/Index.module.css';
 import useSWR from "swr";
+import { postFetcher } from "../functions/fetchers";
 
+import ErrorIndex from '../components/index/ErrorIndex';
 import PostList from '../components/index/PostList';
 import DigestList from '../components/index/DigestList';
 import SkeletonIndex from '../components/skeletons/SkeletonIndex';
 
-const postFetcher = url => fetch(url).then(res => res.json())
-
 const Index = () => {
   //* Postsデータ取得
   const {data, error} = useSWR("/api/posts", postFetcher);
-  if (error) return <>Failed to load</>
+  if (error) return <ErrorIndex error={error} />;
   if (!data) return <SkeletonIndex />
-  // return <SkeletonIndex />
+
+  const style = document.getElementById("__next").firstChild.style
+  style.backgroundSize = "contain";
 
   const { posts, sentToList } = data;
   posts.map(post => {
