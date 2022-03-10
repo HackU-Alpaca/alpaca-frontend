@@ -38,8 +38,10 @@ const PostModal = props => {
 const modalStyle = {
   overlay: {
     position        : "fixed",
-    top             : 0,
-    left            : 0,
+    top             : "0",
+    left            : "0",
+    width           : '101%',
+    height          : '100%',
     backgroundColor : "rgba(50,50,50,0.8)",
   },
 

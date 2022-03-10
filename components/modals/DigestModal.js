@@ -69,8 +69,8 @@ const modalStyle = {
     top        : '0',
     left       : '0',
     padding    : '0',
-    border    : '0',
-    width      : '100%',
+    border     : '0',
+    width      : '101%',
     height     : '100%',
   }
 }
