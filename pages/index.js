@@ -13,6 +13,7 @@ const Index = () => {
   const {data, error} = useSWR("/api/posts", postFetcher);
   if (error) router.push(`/${error.status}`);
   if (!data) return <SkeletonIndex />
+  // return <SkeletonIndex />
 
   const style = document.getElementById("__next").firstChild.style
   style.backgroundSize = "contain";
