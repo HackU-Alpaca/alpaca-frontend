@@ -17,13 +17,10 @@ const AddDescModal = props => {
 
   const titleClicked = event => {
     event.preventDefault();
-    switch ( props.hideModal ) {
-      case undefined:
-        router.push("/")
-        break;
-      default:
-        closeModal(props.hideModal)
-        break;
+    if (props.hideModal === undefined) {
+      router.push("/");
+    } else {
+      closeModal(props.hideModal)
     }
   };
 
@@ -69,9 +66,31 @@ const AddDescModal = props => {
               <div>
                 <h2 className="shelby">How to send messages?</h2>
               </div>
-              <div>
-                <p>Tutorial here!</p>
+              <div className={styles.how_to_list_div}>
+                <ul>
+                  {[
+                    "公式ラインを追加！",
+                    "お届けしたい相手を追加",
+                    "メッセージをLINE上で送信！"
+                  ].map( (text, i) => {
+                    return (
+                      <li key={i} className="flower-butterfly">
+                        <div><span>{i+1}</span></div>
+                        <div><p>{text}</p></div>
+                      </li>
+                    )
+                  })}
+                </ul>
               </div>
+              <div>
+                <Image
+                  src="/icons/mini-alpaca.png"
+                  alt="アルパカさん"
+                  width={140}
+                  height={140}
+                />
+              </div>
+
             </div>
           </div>
 
