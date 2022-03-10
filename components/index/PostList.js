@@ -1,10 +1,7 @@
 import styles from "../../styles/index/PostList.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useModal } from "react-modal-hook";
-import PostModal from "../modals/PostModal";
-import ReadMoreModal from "../modals/ReadMoreModal";
-import TagModal from "../modals/TagModal";
-import SortModal from "../modals/SortModal";
+import { PostModal, ReadMoreModal, TagModal, SortModal } from "../modals";
 import TagList from "./TagList";
 import SearchBox from "./SearchBox";
 import { sorter } from "./sort_functions";
@@ -59,12 +56,12 @@ const PostList = props => {
   const openPostModal = event => {
     const target_node = event.currentTarget;
     const idx = Array.from(target_node.parentNode.children).indexOf(target_node);
-    setTargetPost(posts[idx]);
+    setTargetPost(shown_posts[idx]);
     showPostModal();
   }
 
-  const openSortModals = () => {
-    const { left, bottom } = document.getElementsByClassName("sort-icon")[0].getBoundingClientRect();
+  const openSortModals = event => {
+    const { left, bottom } = event.target.getBoundingClientRect();
     setSortModalStyle({
       top           : bottom+'px',
       left          : (left-80)+'px',
@@ -139,7 +136,8 @@ const PostList = props => {
         </div>
       </div>
 
-      {Object.values(tagInfo).includes('active') && (
+      {/* タグ表示 */}
+      {(props.display === "all") && Object.values(tagInfo).includes('active') && (
         <TagList
           tagInfo={tagInfo}
           updateTagInfo={updateTagInfo}

@@ -5,7 +5,6 @@ ReactModal.setAppElement("#__next");
 
 const TagModal = props => {
   const { tagInfo } = props;
-  console.log(tagInfo);
 
   const toggleColor = event => {
     event.currentTarget.classList.toggle(styles.active);

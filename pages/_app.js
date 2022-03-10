@@ -1,13 +1,16 @@
 import IndexLayout from '../components/layouts/IndexLayout';
 import NormalLayout from '../components/layouts/NormalLayout';
-import '../styles/globals.css'
-import "../styles/modal/Modal.css"
+import ErrorLayout from '../components/layouts/ErrorLayout';
+import '../styles/globals.css';
+import "../styles/modal/Modal.css";
+import "../styles/skeleton/skeleton.css";
 
 import { ModalProvider } from "react-modal-hook"
 
 const layouts = {
   "index": IndexLayout,
-  "normal": NormalLayout
+  "normal": NormalLayout,
+  "error": ErrorLayout,
 }
 
 function App({ Component, pageProps }) {

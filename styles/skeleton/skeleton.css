@@ -1,0 +1,40 @@
+.skeleton {
+  border-radius: 4px;
+  opacity:  .7;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+.skeleton.text {
+  width: 100%;
+}
+.skeleton.box {
+  height: 30px;
+  width: 30px;
+}
+.skeleton.title {
+  width: 40%;
+  height: 25px;
+  margin-bottom: 20px;
+}
+.skeleton.digest {
+  width: 140px;
+  height: 220px;
+  border-radius: 10px;
+}
+.skeleton.post {
+  height: 230px;
+  border-radius: 10px;
+  background: #E1FFE8;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 85%);
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}

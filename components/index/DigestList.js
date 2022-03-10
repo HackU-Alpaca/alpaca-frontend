@@ -1,5 +1,5 @@
 import styles from "../../styles/index/StoryList.module.css";
-import DigestModal from "../modals/DigestModal";
+import { DigestModal } from "../modals/";
 import { useModal } from "react-modal-hook";
 import { useState } from "react";
 

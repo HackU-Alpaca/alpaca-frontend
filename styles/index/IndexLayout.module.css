@@ -2,7 +2,9 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-
+  background-image: url("/images/index-bg.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
   height: 100%;
   width: 100%;
 
@@ -10,8 +12,6 @@
 
 .layout_container header {
   height: 200px;
-  background-image: url("/images/header-bg.svg");
-  background-size: cover;
 }
 .layout_container header a {
   display: flex;

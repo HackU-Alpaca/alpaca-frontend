@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  grid-gap: 8;
+}
+.container ::-webkit-scrollbar {
+  display: none;
+ }
+
+/** Digest title  */
+.container >div:nth-child(1) {
+  margin: 10px 0;
+  align-self: flex-start;
+  margin: 30px 0 0 30px;
+}
+
+/** Digest List */
+.container >div:nth-child(2) {
+  margin: 10px 0;
+  width: 100%;
+  overflow-x: scroll;
+  /* IE, Edge 対応 */
+  -ms-overflow-style: none;
+  /* Firefox 対応 */
+  scrollbar-width: none;
+}
+.container >div:nth-child(2) ul {
+  list-style: none;
+  margin: 0;
+  padding: 0 30px 50px 30px;
+  width: 100%;
+  display: flex;
+  gap: 28px;
+}
+
+/** Post Title */
+.posts_title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.posts_title >div:first-child {
+  margin: 30px 0 0 30px;
+}
+
+/* * Messages設定 */
+.posts_title >div:last-child {
+  margin: 30px 30px 0 30px;
+}
+.posts_title >div:last-child ul {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  gap: 5px;
+  transform: translateY(-3px);
+}
+
+/** Posts */
+.container >div:nth-child(4) {
+  margin: 10px 0;
+  width: 100%;
+}
+.container >div:nth-child(4)>ul {
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 25px;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+/** Each Post */
+.each_post {
+  width: 45%;
+}
+.each_post >div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.each_post >div >div {
+  margin: 10px 0 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.each_post >div >div >ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
+  width: 90%;
+  margin: 0;
+  padding: 0;
+  gap: 10px;
+}
+.each_post >div >div >ul >li {
+  display: flex;
+  justify-content: center;
+  height: 18px;
+}
+.each_post >div >div >ul >li:first-child {
+  height: 32px;
+  margin-bottom: 20px;
+}

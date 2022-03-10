@@ -1,21 +1,29 @@
-import styles from '../styles/index/Index.module.css'
+import styles from '../styles/index/Index.module.css';
 import useSWR from "swr";
+import { useRouter } from 'next/router';
+import { postFetcher } from "../functions/fetchers";
 
 import PostList from '../components/index/PostList';
 import DigestList from '../components/index/DigestList';
-
-const postFetcher = url => fetch(url).then(res => res.json())
+import SkeletonIndex from '../components/skeletons/SkeletonIndex';
 
 const Index = () => {
+  const router = useRouter();
+  //* Postsデータ取得
   const {data, error} = useSWR("/api/posts", postFetcher);
-  if (error) return <>Failed to load</>
-  if (!data) return <>Loading...</>
+  if (error) router.push(`/${error.status}`);
+  if (!data) return <SkeletonIndex />
+  // return <SkeletonIndex />
+
+  const style = document.getElementById("__next").firstChild.style
+  style.backgroundSize = "contain";
 
   const { posts, sentToList } = data;
   posts.map(post => {
-    if (typeof(post.createdAt) !== "string") return ;
-    const iso_format = post.createdAt.split('.')[0];
-    post.createdAt = new Date(iso_format);
+    if (typeof(post.createdAt) === "string") {
+      const iso_format = post.createdAt.split('.')[0];
+      post.createdAt = new Date(iso_format);
+    }
   })
   const digests = sentToList.map( sentTo => {
     return {sentTo: sentTo, messages: []};
