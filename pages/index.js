@@ -15,9 +15,6 @@ const Index = () => {
   if (!data) return <SkeletonIndex />
   // return <SkeletonIndex />
 
-  const style = document.getElementById("__next").firstChild.style
-  style.backgroundSize = "contain";
-
   const { posts, sentToList } = data;
   posts.map(post => {
     if (typeof(post.createdAt) === "string") {

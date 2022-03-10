@@ -13,7 +13,7 @@ const PostList = props => {
   const cantReadMoreFlag = (props.display === "all");
   posts.map(post => Object.assign(post, relations[post.sentTo]));
   const [query, setQuery] = useState("");
-  const [targetPost, setTargetPost] = useState("");
+  const [targetPostIdx, setTargetPostIdx] = useState("");
   const [searching, setSearching] = useState(false);
   let tag_info = {};
   sentToList.map( sentTo => tag_info[sentTo] = "active" );
@@ -27,9 +27,10 @@ const PostList = props => {
   const [showPostModal, hidePostModal] = useModal(() => (
     <PostModal
       hideModal={hidePostModal}
-      post={targetPost}
+      posts={shown_posts}
+      idx={targetPostIdx}
     />
-  ), [targetPost])
+  ), [shown_posts, targetPostIdx])
   const [showReadMoreModal, hideReadMoreModal] = useModal(() => (
     <ReadMoreModal
       hideModal={hideReadMoreModal}
@@ -56,7 +57,7 @@ const PostList = props => {
   const openPostModal = event => {
     const target_node = event.currentTarget;
     const idx = Array.from(target_node.parentNode.children).indexOf(target_node);
-    setTargetPost(shown_posts[idx]);
+    setTargetPostIdx(idx);
     showPostModal();
   }
 
