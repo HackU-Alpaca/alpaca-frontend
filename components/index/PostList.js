@@ -62,7 +62,6 @@ const PostList = props => {
 
   const openSortModals = event => {
     const { left, bottom } = event.target.getBoundingClientRect();
-    console.log(event);
     setSortModalStyle({
       top           : bottom+'px',
       left          : (left-80)+'px',
