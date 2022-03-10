@@ -1,16 +1,17 @@
 import styles from '../styles/index/Index.module.css';
 import useSWR from "swr";
+import { useRouter } from 'next/router';
 import { postFetcher } from "../functions/fetchers";
 
-import ErrorIndex from '../components/index/ErrorIndex';
 import PostList from '../components/index/PostList';
 import DigestList from '../components/index/DigestList';
 import SkeletonIndex from '../components/skeletons/SkeletonIndex';
 
 const Index = () => {
+  const router = useRouter();
   //* Postsデータ取得
   const {data, error} = useSWR("/api/posts", postFetcher);
-  if (error) return <ErrorIndex error={error} />;
+  if (error) router.push("/error/"+error.status);
   if (!data) return <SkeletonIndex />
 
   const style = document.getElementById("__next").firstChild.style

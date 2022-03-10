@@ -1,10 +1,10 @@
 const postFetcher = async url => {
-  const res = await fetch(url);
+  const res = await fetch("/api/fdf");
 
   //* ステータスコード200~299でない
   if (!res.ok) {
     const error = new Error('An error occurred while fetching the data.');
-    error.info = await res.json();
+    error.info = res.statusText;
     error.status = res.status;
     throw error;
   }
