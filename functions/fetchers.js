@@ -1,5 +1,5 @@
 const postFetcher = async url => {
-  const res = await fetch("/api/fdf");
+  const res = await fetch("l");
 
   //* ステータスコード200~299でない
   if (!res.ok) {

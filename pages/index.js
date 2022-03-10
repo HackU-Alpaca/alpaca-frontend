@@ -11,7 +11,7 @@ const Index = () => {
   const router = useRouter();
   //* Postsデータ取得
   const {data, error} = useSWR("/api/posts", postFetcher);
-  if (error) router.push("/error/"+error.status);
+  if (error) router.push(`/${error.status}`);
   if (!data) return <SkeletonIndex />
 
   const style = document.getElementById("__next").firstChild.style
