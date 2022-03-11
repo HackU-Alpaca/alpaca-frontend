@@ -107,11 +107,12 @@ const PostList = props => {
     const idx = posts.indexOf(doc);
     posts[idx] = {...posts[idx], ...{isLiked: !isLiked}}
     updatePosts(posts)
-    event.target.classList.toggle("liked");
     if (isLiked) {
+      event.target.classList.remove("liked");
       event.target.src = "/icons/empty-heart.svg";
     } else {
-      add_like(message_id);
+      event.target.classList.add("liked");
+      // add_like(message_id);
       event.target.src = "/icons/filled-heart.svg";
     }
   }
