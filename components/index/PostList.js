@@ -1,10 +1,11 @@
 import styles from "../../styles/index/PostList.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useModal } from "react-modal-hook";
 import { PostModal, ReadMoreModal, TagModal, SortModal } from "../modals";
 import TagList from "./TagList";
 import SearchBox from "./SearchBox";
 import { sorter } from "./sort_functions";
+import { update_like } from "../../functions/";
 
 const PostList = props => {
   const { posts, sentToList } = props;
@@ -55,6 +56,7 @@ const PostList = props => {
   ), [sortInfo, sortModalStyle])
 
   const openPostModal = event => {
+    if (event.target.className === "like-icon") return null;
     const target_node = event.currentTarget;
     const idx = Array.from(target_node.parentNode.children).indexOf(target_node);
     setTargetPostIdx(idx);
@@ -81,6 +83,19 @@ const PostList = props => {
       }
       return newTagInfo;
     } );
+  }
+
+  //* Likeボタン設定
+  const toggleHeartBtn = event => {
+    const isLiked = event.target.src.includes("filled");
+    const message_id = event.target.parentNode.parentNode.parentNode.className;
+    if (isLiked) {
+      // update_like(false);
+      event.target.src = "/icons/empty-heart.svg";
+    } else {
+      // update_like(true);
+      event.target.src = "/icons/filled-heart.svg";
+    }
   }
 
   //* "active"なタグでソート
@@ -149,12 +164,23 @@ const PostList = props => {
         {shown_posts.slice(0, num).map( (post, i) => {
           const { sentTo_1, sentTo_2 } = relations[post.sentTo];
           return (
-            <li key={i} onClick={openPostModal}>
+            <li key={i} onClick={openPostModal} className={post.message_id}>
               <span className="shelby">Dear</span>
               <h3 className="flower-butterfly">
                 {sentTo_1}<br />{sentTo_2}
               </h3>
               <p>{post.message}</p>
+              <div>
+                <img
+                  src={(post.isLiked)
+                    ? "/icons/filled-heart.svg"
+                    : "/icons/empty-heart.svg"
+                  }
+                  alt="Likeボタン"
+                  className="like-icon"
+                  onClick={toggleHeartBtn}
+                />
+              </div>
             </li>
           )
         })}
@@ -185,6 +211,22 @@ const relations = {
   },
   "アルパカ": {
     sentTo_1: "アルパカ", sentTo_2: "の方"
+  },
+  "主婦": {
+    sentTo_1: "主婦の方",
+    sentTo_2: "",
+  },
+  "サラリーマン": {
+    sentTo_1: "サラリーマン",
+    sentTo_2: "の方",
+  },
+  "受験生": {
+    sentTo_1: "受験生",
+    sentTo_2: "の方",
+  },
+  "学生": {
+    sentTo_1: "学生の方",
+    sentTo_2: "",
   },
 }
 

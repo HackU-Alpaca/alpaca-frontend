@@ -4,21 +4,10 @@ import { useModal } from "react-modal-hook";
 import { useState } from "react";
 
 const DigestList = props => {
-  const digests = props.digests;
+  let digests = props.digests;
   digests.map( digest => {
     Object.assign(digest, relations[digest.sentTo])
   });
-  const shown_data = Object.keys(relations).map( key => {
-    let data;
-    digests.forEach(element => {
-      console.log(key);
-      console.log(element);
-      if (element.sentTo === key) data = element;;
-    });
-    return data;
-  })
-
-  console.log(shown_data);
 
   const [chosenDigest, setChosenDigest] = useState("")
 
@@ -39,9 +28,13 @@ const DigestList = props => {
         <h2 className="shelby">Digest</h2>
         <div>
           <ul>
-            {shown_data.map( digest => {
+            {digests.map( digest => {
                 return (
-                  <a key={digest.name} onClick={showDigest}>
+                  <a
+                  key={digest.name}
+                  onClick={showDigest}
+                  className={`${digest.name}-bg`}
+                  >
                     <li className={`${digest.name}`}>
                       <p>{digest.sentTo_1}<br />
                           {digest.sentTo_2}</p>
@@ -75,12 +68,36 @@ const relations = {
     sentTo_2: "働く皆さん",
     url : "/images/chef.jpg"
   },
-  "アルパカ": {
-    name: "alpaca",
-    sentTo_1: "アルパカの",
-    sentTo_2: "皆さん",
-    url : "/images/alpaca.jpg"
+  "主婦": {
+    name: "housewife",
+    sentTo_1: "主婦の方",
+    sentTo_2: "",
+    url : "/images/housewife.jpg"
   },
+  "サラリーマン": {
+    name: "office_worker",
+    sentTo_1: "サラリーマン",
+    sentTo_2: "の方",
+    url : "/images/office_worker.jpg"
+  },
+  "受験生": {
+    name: "candidate",
+    sentTo_1: "受験生",
+    sentTo_2: "の方",
+    url : "/images/candidate.jpg"
+  },
+  "学生": {
+    name: "student",
+    sentTo_1: "学生の方",
+    sentTo_2: "",
+    url : "/images/student.jpg"
+  },
+  // "アルパカ": {
+  //   name: "alpaca",
+  //   sentTo_1: "アルパカの",
+  //   sentTo_2: "皆さん",
+  //   url : "/images/alpaca.jpg"
+  // },
 }
 
 export default DigestList;

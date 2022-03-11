@@ -66,3 +66,36 @@ a {
   height: 20px;
   width: 20px;
 }
+.like-icon {
+  height: 25px;
+  width: 25px;
+}
+
+.doctor-bg {
+  background-image: url("/images/doctor.jpg");
+  background-size: cover;
+}
+.housewife-bg {
+  background-image: url("/images/housewife.jpg");
+  background-size: cover;
+}
+.student-bg {
+  background-image: url("/images/student.jpg");
+  background-size: cover;
+}
+.patient-bg {
+  background-image: url("/images/patient.jpg");
+  background-size: cover;
+}
+.candidate-bg {
+  background-image: url("/images/candidate.jpg");
+  background-size: cover;
+}
+.office_worker-bg {
+  background-image: url("/images/office_worker.jpg");
+  background-size: cover;
+}
+.chef-bg {
+  background-image: url("/images/chef.jpg");
+  background-size: cover;
+}

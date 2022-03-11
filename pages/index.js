@@ -11,7 +11,8 @@ const Index = () => {
   const router = useRouter();
   //* Postsデータ取得
   const num = 30;
-  const {data, error} = useSWR("/api/posts?num="+num, postFetcherByTag);
+  const tags = ["主婦", "学生", "医療従事者", "受験生", "サラリーマン", "飲食店従業員", "コロナ感染者"]
+  const {data, error} = useSWR("/api/posts?num="+num+"&tags="+tags, postFetcherByTag);
   if (error) router.push(`/${error.status}`);
   if (!data) return <SkeletonIndex />
   // return <SkeletonIndex />

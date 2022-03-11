@@ -1,4 +1,5 @@
 const postFetcherByTag = async url => {
+
   const res = await fetch(url);
 
   //* ステータスコード200~299でない

@@ -29,20 +29,7 @@
   display: flex;
   gap: 28px;
 }
-.container ul >:nth-child(1){
-  background-image: url("/images/doctor.jpg");
-  background-size: cover;
-}
-.container ul >:nth-child(2){
-  background-image: url("/images/patient.jpg");
-  background-size: cover;
-}
-.container ul >:nth-child(3){
-  background-image: url("/images/chef.jpg");
-  background-size: cover;
-}
-.container ul >:nth-child(4){
-  background-image: url("/images/alpaca.jpg");
+.container ul >a{
   background-size: cover;
 }
 .container ul >:last-child{

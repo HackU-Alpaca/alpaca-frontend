@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
+import useSWR from "swr";
+import { get_like } from "../../functions/";
+import { useRouter } from 'next/router';
 
 ReactModal.setAppElement("#__next");
 
@@ -7,9 +10,18 @@ const PostModal = props => {
   const { posts, idx } = props;
   const [shownIdx, setShownIdx] = useState(idx);
   const [random, setRandom] = useState(false);
-  const { sentTo_1, sentTo_2, message } = posts[shownIdx];
+  const { sentTo_1, sentTo_2, message, isLiked } = posts[shownIdx];
   const sentTo = sentTo_1 + sentTo_2;
-  console.log(shownIdx, posts);
+
+  // const router = useRouter();
+  // const message_id = posts[shownIdx].message_id;
+  // const url = "/api/likes?message_id="+message_id;
+  // const {data, error} = useSWR(url, get_like);
+
+  // if (error) router.push(`/${error.status}`);
+  // if (!data) return <>Loading...</>
+
+  // const {isLiked} = data;
 
   const shiftPost = which => {
     if (random) {
@@ -17,6 +29,16 @@ const PostModal = props => {
     } else {
       //* 端から端もいける
       setShownIdx(prevIdx => (posts.length+prevIdx+which)%posts.length)
+    }
+  }
+
+  //* Likeボタン設定
+  const toggleHeartBtn = event => {
+    const isLiked = event.target.src.includes("filled");
+    if (isLiked) {
+      event.target.src = "/icons/empty-heart.svg";
+    } else {
+      event.target.src = "/icons/filled-heart.svg";
     }
   }
 
@@ -66,8 +88,17 @@ const PostModal = props => {
         onClick={() => shiftPost(1)}
       />
 
+      <img
+        src={(isLiked)
+          ? "/icons/filled-heart.svg"
+          : "/icons/empty-heart.svg"
+        }
+        alt="Likeボタン"
+        className="fav"
+        style={heart_btn}
+        onClick={toggleHeartBtn}
+      />
     </div>
-
   );
 }
 
@@ -78,7 +109,7 @@ const modalStyle = {
     left            : "0",
     width           : '101%',
     height          : '100%',
-    backgroundColor : "rgba(50,50,50,0.8)",
+    backgroundColor : "rgba(50,50,50,0.9)",
   },
 
   content : {
@@ -105,7 +136,7 @@ const container_styles = {
 }
 
 const message_styles = {
-  margin     : '0 20px',
+  margin     : '40px 20px 0',
   fontSize   : '24px',
   flex       : '1',
   color      : '#7C7C7C',
@@ -116,7 +147,7 @@ const message_styles = {
 const btn_styles = {
   display         : "block",
   position        : "fixed",
-  top             : '80%',
+  top             : '78%',
   width           : "60px",
   height          : "60px",
   zIndex          : "15000"
@@ -134,6 +165,12 @@ const right_btn = {
 }
 const random_btn = {
   ...btn_styles, ...{
+    left : "calc(50% - 30px)"
+  }
+}
+const heart_btn = {
+  ...btn_styles, ...{
+    top  : '88%',
     left : "calc(50% - 30px)"
   }
 }
