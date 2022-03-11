@@ -30,12 +30,13 @@ const PostModal = props => {
   //* Likeボタン設定
   const toggleHeartBtn = event => {
     const isLiked = event.target.src.includes("filled");
-    event.target.classList.toggle("liked");
     posts[shownIdx] = {...posts[shownIdx], ...{isLiked: !isLiked}};
     if (isLiked) {
+      event.target.classList.remove("liked");
       event.target.src = "/icons/empty-heart.svg";
     } else {
-      add_like(message_id);
+      event.target.classList.add("liked");
+      // add_like(message_id);
       event.target.src = "/icons/filled-heart.svg";
     }
   }
