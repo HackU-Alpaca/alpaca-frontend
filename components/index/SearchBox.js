@@ -29,6 +29,7 @@ const SearchBox = props => {;
         className="search"
         placeholder={"Search..."}
         type="text"
+        defaultValue={tempQuery}
         onBlur={props.close}
         onChange={onChange}
         onKeyDown={onEnterKeyDown}
