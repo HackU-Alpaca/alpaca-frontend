@@ -1,15 +1,8 @@
-const update_like = async (message_id, flag) => {
+const add_like = async message_id => {
 
-  const requestOptions = {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' }
-  };
+  const url = "api/likes/?message_id="+message_id;
 
-  const url = "alpaca/likes?message_id="+message_id;
-
-  //* flag: true → likeをつける
-  //* flag: false → likeを解除する
-  const res = await fetch(url, requestOptions);
+  const res = await fetch(url);
 
   //* ステータスコード200~299でない
   if (!res.ok) {
@@ -44,4 +37,4 @@ const get_like = async (url) => {
   return res.json();
 }
 
-export { update_like, get_like };
+export { add_like, get_like };

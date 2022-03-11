@@ -29,8 +29,8 @@
   margin: 0;
   display: flex;
   flex-wrap: wrap;
-  padding: 0 25px;
-  justify-content: space-around;
+  padding: 0 10px;
+  justify-content: space-evenly;
   gap: 15px;
 }
 
@@ -38,7 +38,7 @@
   height: 230px;
   width: 45%;
   margin: 0;
-  padding: 10px;
+  padding: 8px;
   border-radius: 10px;
   background: #E1FFE8;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8);  /* Chrome 10-25, Safari 5.1-6 */
@@ -61,7 +61,7 @@
   text-align: center;
   font-size: 18px;
 }
-.container >ul >li p {
+.container >ul >li >div:nth-child(3) {
   grid-area: message;
   font-weight: bold;
   height: 125px;
@@ -71,9 +71,14 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 5;
   margin: 16px 0 5px 0;
+  text-align: center;
 }
+.container >ul >li >div:nth-child(3) p {
+  margin: 0;
+}
+
 /** likeボタン */
-.container >ul >li >div {
+.container >ul >li >div:last-child {
   grid-area: like-div;
   text-align: right;
   padding: 0 5px 0 0;

@@ -13,7 +13,7 @@ const SearchBox = props => {;
   const onEnterKeyDown = event => {
     if (event.key === "Enter") {
       props.setQuery(tempQuery);
-      // props.close();
+      props.close();
     }
   }
 

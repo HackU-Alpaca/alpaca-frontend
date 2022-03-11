@@ -4,17 +4,15 @@ export default function handler(req, res) {
   const { tags, num } = req.query;
   const tag_list = tags.split(",");
 
-  console.log(tag_list);
-  console.log(num);
   const alpaca = true;
   if (alpaca) {
-    const base_url = "https://hacku-alpaca-backend.herokuapp.com/get_messages_by_tags/?tags="+tag_list+"&num_of_message="+num;
+    const base_url = "https://hacku-alpaca-backend.herokuapp.com/get_messages_by_tags/"+
+      "?tags="+tag_list+
+      "&num_of_message="+num;
 
     fetch(base_url)
       .then(res => res.json())
       .then(data => {
-
-        console.log(data.messages);
 
         let posts = [];
         const sentToSet = new Set();
@@ -22,7 +20,6 @@ export default function handler(req, res) {
           sentToSet.add(post.sendTo);
           const new_data = {
             sentTo: post.sendTo,
-            isLiked: false,
             message_id: post.id,
             message: post.context
           }
@@ -88,53 +85,3 @@ export default function handler(req, res) {
     res.status(200).json(cast_data)
   }
 }
-
-
-//TODO delete
-const post_list = [
-  {
-    sentToId: 0,
-    message:
-      "いつも私たちのために最前線で働いてくださり、ありがとうございます！"
-    },
-  {
-    sentToId: 1,
-    message:
-      "はやく治りますように！"
-    },
-  {
-    sentToId: 2,
-    message:
-      "いつも美味しいご飯をありがとうございます。"
-    },
-  {
-    sentToId: 3,
-    message:
-      "いつも美味しいご飯を作ってくれてありがとう！"
-    },
-  {
-    sentToId: 4,
-    message:
-      "コロナで外に出るのも大変なのに、通勤して働いてくれて本当に助かります。"
-    },
-  {
-    sentToId: 5,
-    message:
-      "今、心落ちつかない日々が続いていると思います。私たちも１年前は受験生で、みなさんの気持ちも分かります。私たちはみなさんが一生懸命に勉強し、健康でいることを純心からお祈りしています。"
-    },
-  {
-    sentToId: 6,
-    message:
-      "今まで誰もが経験したことのない大変な状況ですね。でも、ここが新しい世界の始まりだとも思えます。その新しい世界を作っていくのはあなたたちです。経験したからこそできること、あると思います。応援しています。"
-    },
-]
-
-// const sentToData = [
-//   "医療従事者",
-//   "コロナ感染者",
-//   "飲食店従業員",
-//   "主婦",
-//   "サラリーマン",
-//   "受験生",
-//   "学生"
-// ]

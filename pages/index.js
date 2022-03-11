@@ -11,11 +11,11 @@ const Index = () => {
   const router = useRouter();
   //* Postsデータ取得
   const num = 30;
-  const tags = ["主婦", "学生", "医療従事者", "受験生", "サラリーマン", "飲食店従業員", "コロナ感染者"]
+  const tags = ["主婦", "学生", "医療従事者", "受験生", "サラリーマン", "飲食店従業員", "コロナ感染者"];
   const {data, error} = useSWR("/api/posts?num="+num+"&tags="+tags, postFetcherByTag);
   if (error) router.push(`/${error.status}`);
-  if (!data) return <SkeletonIndex />
-  // return <SkeletonIndex />
+  if (!data) return <SkeletonIndex />;
+
   const { posts, sentToList } = data;
   const time_converted_posts = convert_time(posts);
   const digests = sentToList.map( sentTo => {
