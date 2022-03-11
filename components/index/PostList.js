@@ -117,9 +117,13 @@ const PostList = props => {
   }
   //* LocalStorageからlikeを取得
   const savedLikes = JSON.parse(localStorage.getItem("Likes"));
-  posts.map(post => {
-    post.isLiked = savedLikes[post.message_id]
-  })
+  if (savedLikes) {
+    posts.map(post => {
+      post.isLiked = savedLikes[post.message_id]
+    })
+  } else {
+    posts.map(post => post.isLiked = false)
+  }
 
   //* "active"なタグでソート
   const active_tags = Object.keys(tagInfo).filter( tag => {
