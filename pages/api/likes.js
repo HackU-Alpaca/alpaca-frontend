@@ -4,9 +4,15 @@ export default function handler(req, res) {
 
   console.log(message_id);
 
-  // const cast_data = {
-  //   like: true
-  // }
+  const url = "https://hacku-alpaca-backend.herokuapp.com/likes/?message_id="+message_id
 
-  res.status(200).json({isLiked: (Math.random() >= 0.5)})
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+
+      console.log(data);
+
+      res.status(200).json({})
+    })
+
 }

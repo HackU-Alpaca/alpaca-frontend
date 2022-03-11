@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactModal from "react-modal";
-import useSWR from "swr";
-import { get_like } from "../../functions/";
-import { useRouter } from 'next/router';
+import { add_like } from "../../functions/";
 
 ReactModal.setAppElement("#__next");
 
@@ -10,36 +8,41 @@ const PostModal = props => {
   const { posts, idx } = props;
   const [shownIdx, setShownIdx] = useState(idx);
   const [random, setRandom] = useState(false);
-  const { sentTo_1, sentTo_2, message, isLiked } = posts[shownIdx];
+  const { sentTo_1, sentTo_2, message, isLiked, message_id } = posts[shownIdx];
   const sentTo = sentTo_1 + sentTo_2;
 
-  // const router = useRouter();
-  // const message_id = posts[shownIdx].message_id;
-  // const url = "/api/likes?message_id="+message_id;
-  // const {data, error} = useSWR(url, get_like);
-
-  // if (error) router.push(`/${error.status}`);
-  // if (!data) return <>Loading...</>
-
-  // const {isLiked} = data;
-
   const shiftPost = which => {
+    const heart_btn_node = document.getElementsByClassName("heart-btn")[0];
+    let nextIdx;
     if (random) {
-      setShownIdx(Math.floor(Math.random()*posts.length));
+      nextIdx = Math.floor(Math.random()*posts.length);
+      setShownIdx();
     } else {
       //* 端から端もいける
-      setShownIdx(prevIdx => (posts.length+prevIdx+which)%posts.length)
+      nextIdx = (posts.length+shownIdx+which)%posts.length
+      setShownIdx(nextIdx)
     }
+    const nextIsLiked = posts[nextIdx].isLiked;
+    heart_btn_node.src = (nextIsLiked)
+      ? "/icons/filled-heart.svg" : "/icons/empty-heart.svg";
   }
 
   //* Likeボタン設定
   const toggleHeartBtn = event => {
     const isLiked = event.target.src.includes("filled");
+    event.target.classList.toggle("liked");
+    posts[shownIdx] = {...posts[shownIdx], ...{isLiked: !isLiked}};
     if (isLiked) {
       event.target.src = "/icons/empty-heart.svg";
     } else {
+      add_like(message_id);
       event.target.src = "/icons/filled-heart.svg";
     }
+  }
+
+  const close = () => {
+    props.updatePosts(posts);
+    props.hideModal();
   }
 
   return (
@@ -48,14 +51,14 @@ const PostModal = props => {
         isOpen
         style={modalStyle}
         closeTimeoutMS={300}
-        onRequestClose={props.hideModal}
+        onRequestClose={close}
       >
         <span>
           <img
             src="/icons/cancel_icon.svg"
             alt="戻る"
             className="cancel-icon"
-            onClick={props.hideModal}
+            onClick={close}
           />
           <h3 className="flower-butterfly strong-gray">
             {sentTo}
@@ -90,11 +93,9 @@ const PostModal = props => {
 
       <img
         src={(isLiked)
-          ? "/icons/filled-heart.svg"
-          : "/icons/empty-heart.svg"
-        }
+          ? "/icons/filled-heart.svg" : "/icons/empty-heart.svg"}
         alt="Likeボタン"
-        className="fav"
+        className="heart-btn"
         style={heart_btn}
         onClick={toggleHeartBtn}
       />
@@ -113,7 +114,7 @@ const modalStyle = {
   },
 
   content : {
-    top           : '10%',
+    top           : '8%',
     left          : '6%',
     padding       : '0',
     border        : '0',
@@ -147,7 +148,7 @@ const message_styles = {
 const btn_styles = {
   display         : "block",
   position        : "fixed",
-  top             : '78%',
+  top             : '76%',
   width           : "60px",
   height          : "60px",
   zIndex          : "15000"

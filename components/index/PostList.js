@@ -5,10 +5,11 @@ import { PostModal, ReadMoreModal, TagModal, SortModal } from "../modals";
 import TagList from "./TagList";
 import SearchBox from "./SearchBox";
 import { sorter } from "./sort_functions";
-import { update_like } from "../../functions/";
+import { add_like } from "../../functions/";
 
 const PostList = props => {
-  const { posts, sentToList } = props;
+  const { sentToList } = props;
+  const [ posts, setPosts ] = useState(props.posts);
   const num = (props.display === "all") //* 一回で表示されるpostの数
     ? posts.length : props.display;
   const cantReadMoreFlag = (props.display === "all");
@@ -30,6 +31,7 @@ const PostList = props => {
       hideModal={hidePostModal}
       posts={shown_posts}
       idx={targetPostIdx}
+      updatePosts={updatePosts}
     />
   ), [shown_posts, targetPostIdx])
   const [showReadMoreModal, hideReadMoreModal] = useModal(() => (
@@ -56,7 +58,7 @@ const PostList = props => {
   ), [sortInfo, sortModalStyle])
 
   const openPostModal = event => {
-    if (event.target.className === "like-icon") return null;
+    if (event.target.className.includes("like-icon")) return null;
     const target_node = event.currentTarget;
     const idx = Array.from(target_node.parentNode.children).indexOf(target_node);
     setTargetPostIdx(idx);
@@ -85,18 +87,39 @@ const PostList = props => {
     } );
   }
 
+  const updatePosts = newPosts => {
+    const newLikes = {};
+    newPosts.map(post => {
+      newLikes[post.message_id] = post.isLiked;
+    })
+    const savedLikes = JSON.parse(localStorage.getItem("Likes"));
+    localStorage.setItem("Likes", JSON.stringify({
+      ...savedLikes, ...newLikes
+    }))
+    setPosts(newPosts);
+  }
+
   //* Likeボタン設定
   const toggleHeartBtn = event => {
     const isLiked = event.target.src.includes("filled");
-    const message_id = event.target.parentNode.parentNode.parentNode.className;
+    const message_id = event.target.parentNode.parentNode.className;
+    const doc = posts.find(post=>post.message_id===message_id);
+    const idx = posts.indexOf(doc);
+    posts[idx] = {...posts[idx], ...{isLiked: !isLiked}}
+    updatePosts(posts)
+    event.target.classList.toggle("liked");
     if (isLiked) {
-      // update_like(false);
       event.target.src = "/icons/empty-heart.svg";
     } else {
-      // update_like(true);
+      add_like(message_id);
       event.target.src = "/icons/filled-heart.svg";
     }
   }
+  //* LocalStorageからlikeを取得
+  const savedLikes = JSON.parse(localStorage.getItem("Likes"));
+  posts.map(post => {
+    post.isLiked = savedLikes[post.message_id]
+  })
 
   //* "active"なタグでソート
   const active_tags = Object.keys(tagInfo).filter( tag => {
@@ -143,12 +166,14 @@ const PostList = props => {
               query={query}
             />
           )}
-          <img
-            src={sort_icon_url}
-            alt="ソート"
-            className="sort-icon"
-            onClick={openSortModals}
-          />
+          {!searching && (
+            <img
+              src={sort_icon_url}
+              alt="ソート"
+              className="sort-icon"
+              onClick={openSortModals}
+            />
+          )}
         </div>
       </div>
 
@@ -169,7 +194,9 @@ const PostList = props => {
               <h3 className="flower-butterfly">
                 {sentTo_1}<br />{sentTo_2}
               </h3>
-              <p>{post.message}</p>
+              <div>
+                <p>{post.message}</p>
+              </div>
               <div>
                 <img
                   src={(post.isLiked)
@@ -177,7 +204,7 @@ const PostList = props => {
                     : "/icons/empty-heart.svg"
                   }
                   alt="Likeボタン"
-                  className="like-icon"
+                  className="like-icon heart"
                   onClick={toggleHeartBtn}
                 />
               </div>
