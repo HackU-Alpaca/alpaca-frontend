@@ -8,6 +8,17 @@ const DigestList = props => {
   digests.map( digest => {
     Object.assign(digest, relations[digest.sentTo])
   });
+  const shown_data = Object.keys(relations).map( key => {
+    let data;
+    digests.forEach(element => {
+      console.log(key);
+      console.log(element);
+      if (element.sentTo === key) data = element;;
+    });
+    return data;
+  })
+
+  console.log(shown_data);
 
   const [chosenDigest, setChosenDigest] = useState("")
 
@@ -22,23 +33,22 @@ const DigestList = props => {
     setChosenDigest(digest)
     showModal();
   }
-
   return (
     <div className={styles.container}>
       <div>
         <h2 className="shelby">Digest</h2>
         <div>
           <ul>
-            {digests.map( digest => {
-              return (
-                <a key={digest.name} onClick={showDigest}>
-                  <li className={`${digest.name}`}>
-                    <p>{digest.sentTo_1}<br />
-                        {digest.sentTo_2}</p>
-                  </li>
-                </a>
-              )
-            })}
+            {shown_data.map( digest => {
+                return (
+                  <a key={digest.name} onClick={showDigest}>
+                    <li className={`${digest.name}`}>
+                      <p>{digest.sentTo_1}<br />
+                          {digest.sentTo_2}</p>
+                    </li>
+                  </a>
+                )
+              })}
           </ul>
         </div>
       </div>
@@ -48,16 +58,28 @@ const DigestList = props => {
 
 const relations = {
   "医療従事者": {
-    name: "doctor", sentTo_1: "医療従事者の", sentTo_2: "皆さん"
+    name: "doctor",
+    sentTo_1: "医療従事者の",
+    sentTo_2: "皆さん",
+    url : "/images/doctor.jpg"
   },
   "コロナ感染者": {
-    name: "patient", sentTo_1: "コロナに", sentTo_2: "感染した皆さん"
+    name: "patient",
+    sentTo_1: "コロナに",
+    sentTo_2: "感染した皆さん",
+    url : "/images/patient.jpg"
   },
   "飲食店従業員": {
-    name: "chef", sentTo_1: "飲食店で", sentTo_2: "働く皆さん"
+    name: "chef",
+    sentTo_1: "飲食店で",
+    sentTo_2: "働く皆さん",
+    url : "/images/chef.jpg"
   },
   "アルパカ": {
-    name: "alpaca", sentTo_1: "アルパカの", sentTo_2: "皆さん"
+    name: "alpaca",
+    sentTo_1: "アルパカの",
+    sentTo_2: "皆さん",
+    url : "/images/alpaca.jpg"
   },
 }
 

@@ -1,7 +1,7 @@
 import styles from '../styles/index/Index.module.css';
 import useSWR from "swr";
 import { useRouter } from 'next/router';
-import { postFetcher, convert_time } from "../functions/";
+import { postFetcherByTag, convert_time } from "../functions/";
 
 import PostList from '../components/index/PostList';
 import DigestList from '../components/index/DigestList';
@@ -11,13 +11,12 @@ const Index = () => {
   const router = useRouter();
   //* Postsデータ取得
   const num = 30;
-  const {data, error} = useSWR("/api/posts", postFetcher);
+  const {data, error} = useSWR("/api/posts?num="+num, postFetcherByTag);
   if (error) router.push(`/${error.status}`);
   if (!data) return <SkeletonIndex />
   // return <SkeletonIndex />
-
   const { posts, sentToList } = data;
-  time_converted_posts = convert_time(posts);
+  const time_converted_posts = convert_time(posts);
   const digests = sentToList.map( sentTo => {
     return {sentTo: sentTo, messages: []};
   } );
