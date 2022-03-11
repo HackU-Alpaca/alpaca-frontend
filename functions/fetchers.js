@@ -1,4 +1,4 @@
-const postFetcher = async url => {
+const postFetcherByTag = async url => {
   const res = await fetch(url);
 
   //* ステータスコード200~299でない
@@ -12,4 +12,4 @@ const postFetcher = async url => {
   return res.json();
 }
 
-export { postFetcher };
+export { postFetcherByTag };
