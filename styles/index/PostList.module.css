@@ -45,8 +45,9 @@
   background: linear-gradient(to bottom, #E1FFFE, #E1FFF2, #E1FFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   display: grid;
   grid-template-areas: "dear    target"
-                       "message message";
-  grid-template-rows: 40px 1fr;
+                       "message message"
+                       "like-div like-div";
+  grid-template-rows: 40px 1fr 30px;
   grid-template-columns: 35px 1fr;
 }
 .container >ul li span {
@@ -60,15 +61,24 @@
   text-align: center;
   font-size: 18px;
 }
-.container >ul li p {
+.container >ul >li p {
   grid-area: message;
   font-weight: bold;
-  height: 145px;
+  height: 125px;
+  line-height: 25px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 5;
+  margin: 16px 0 5px 0;
 }
+/** likeボタン */
+.container >ul >li >div {
+  grid-area: like-div;
+  text-align: right;
+  padding: 0 5px 0 0;
+}
+
 .container >div:last-child {
   margin: 25px 30px 0 0;
 }
