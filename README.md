@@ -14,6 +14,6 @@ npm install
 npm run dev
 ```
 
-デプロイ先
+デプロイ先（スマートフォンの画面サイズに対応）
 
 https://alpaca-frontend-xi.vercel.app
