@@ -1,11 +1,12 @@
 import styles from "../../styles/index/PostList.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useModal } from "react-modal-hook";
 import { PostModal, ReadMoreModal, TagModal, SortModal } from "../modals";
 import TagList from "./TagList";
 import SearchBox from "./SearchBox";
 import { sorter } from "./sort_functions";
 import { add_like } from "../../functions/";
+import { id_tag_relations } from "../../constants/tagConstants";
 
 const PostList = props => {
   const { sentToList } = props;
@@ -18,7 +19,7 @@ const PostList = props => {
   const [targetPostIdx, setTargetPostIdx] = useState("");
   const [searching, setSearching] = useState(false);
   let tag_info = {};
-  sentToList.map( sentTo => tag_info[sentTo] = "active" );
+  for (const key in id_tag_relations) tag_info[key] = "active";
   const [tagInfo, setTagInfo] = useState(tag_info);
   const [sortInfo, setSortInfo] = useState({
     order_by: "createdAt", ascending: false
@@ -130,7 +131,7 @@ const PostList = props => {
   const active_tags = Object.keys(tagInfo).filter( tag => {
     return tagInfo[tag] === "active";
   })
-  let shown_posts = posts.filter( post => active_tags.includes(post.sentTo) );
+  let shown_posts = posts.filter( post => active_tags.includes(post.tagKey) );
   //* 検索ワードでフィルター
   shown_posts = shown_posts.filter(post => {
     const sentTo = post.sentTo_1 + post.sentTo_2;

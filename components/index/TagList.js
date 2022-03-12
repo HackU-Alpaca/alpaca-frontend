@@ -1,10 +1,12 @@
 import styles from "../../styles/index/TagList.module.css";
+import { id_tag_relations } from "../../constants/tagConstants";
 
 const TagList = props => {
-  const tagInfo = props.tagInfo;
+  const { tagInfo } = props;
   const removeThisTag = event => {
-    const tag = event.currentTarget.parentNode.innerText;
-    tagInfo[tag] = "inactive";
+    const tag = event.currentTarget.parentNode;
+    const tagKey = tag.classList[0].split("_")[1];
+    tagInfo[tagKey] = "inactive";
     props.updateTagInfo(tagInfo);
   }
 
@@ -17,9 +19,9 @@ const TagList = props => {
             return (
               <li
                 key={i}
-                className={`flower-butterfly ${styles.active}`}
+                className={`tagKey_${tag} flower-butterfly ${styles.active}`}
               >
-                <p className="tags">{tag}</p>
+                <p className="tags">{id_tag_relations[tag]}</p>
                 <img
                   src="/icons/cancel_icon.svg"
                   alt="タグ消去"
