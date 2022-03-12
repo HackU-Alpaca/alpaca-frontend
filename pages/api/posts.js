@@ -1,4 +1,5 @@
 import {sentToData} from "../../constants/";
+import { id_tag_relations } from "../../constants/tagConstants";
 
 export default function handler(req, res) {
   const { tags, num } = req.query;
@@ -18,10 +19,17 @@ export default function handler(req, res) {
         const sentToSet = new Set();
         Array.from(data.messages).map( (post, i) => {
           sentToSet.add(post.sendTo);
+          let tagKey;
+          for (let key in id_tag_relations) {
+            if (id_tag_relations[key] === post.sendTo) {
+              tagKey = key;
+            }
+          }
           const new_data = {
             sentTo: post.sendTo,
             message_id: post.id,
-            message: post.context
+            message: post.context,
+            tagKey : tagKey
           }
           posts[i] = {...post, ...new_data};
         })

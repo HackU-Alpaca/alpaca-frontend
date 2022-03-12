@@ -2,6 +2,7 @@ import styles from '../styles/index/Index.module.css';
 import useSWR from "swr";
 import { useRouter } from 'next/router';
 import { postFetcherByTag, convert_time } from "../functions/";
+import { allTags } from '../constants/tagConstants';
 
 import PostList from '../components/index/PostList';
 import DigestList from '../components/index/DigestList';
@@ -11,13 +12,14 @@ const Index = () => {
   const router = useRouter();
   //* Postsデータ取得
   const num = 30;
-  const tags = ["主婦", "学生", "医療従事者", "受験生", "サラリーマン", "飲食店従業員", "コロナ感染者"];
-  const {data, error} = useSWR("/api/posts?num="+num+"&tags="+tags, postFetcherByTag);
+  const {data, error} = useSWR("/api/posts?num="+num+"&tags="+allTags, postFetcherByTag);
   if (error) router.push(`/${error.status}`);
   if (!data) return <SkeletonIndex />;
 
   const { posts, sentToList } = data;
   const time_converted_posts = convert_time(posts);
+
+  //* Digests作成
   const digests = sentToList.map( sentTo => {
     return {sentTo: sentTo, messages: []};
   } );

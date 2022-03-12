@@ -1,5 +1,6 @@
 import styles from "../../styles/modal/TagModal.module.css";
 import ReactModal from "react-modal";
+import { id_tag_relations } from "../../constants/tagConstants";
 
 ReactModal.setAppElement("#__next");
 
@@ -14,10 +15,11 @@ const TagModal = props => {
   const closeModal = () => {
     const tag_nodes = document.getElementsByClassName(styles.container)[0].getElementsByTagName("li");
     const tagInfo = {};
-    Array.from(tag_nodes).map(tag => {
-      tagInfo[tag.innerText] = (tag.className.indexOf("inactive") !== -1)
+    Array.from(tag_nodes).map( node => {
+      tagInfo[node.classList[0].split("_")[1]] =
+        (node.className.indexOf("inactive") !== -1)
         ? "inactive" : "active";
-    });
+    })
     props.updateTagInfo(tagInfo)
     props.hideModal();
   }
@@ -43,10 +45,10 @@ const TagModal = props => {
                   return (
                     <li
                       key={i}
-                      className={`flower-butterfly ${style}`}
+                      className={`tagKey_${tag} flower-butterfly ${style}`}
                       onClick={toggleColor}
                     >
-                      <p>{tag}</p>
+                      <p>{id_tag_relations[tag]}</p>
                     </li>
                   )
                 })}

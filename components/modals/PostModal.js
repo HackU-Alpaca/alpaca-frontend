@@ -16,7 +16,7 @@ const PostModal = props => {
     let nextIdx;
     if (random) {
       nextIdx = Math.floor(Math.random()*posts.length);
-      setShownIdx();
+      setShownIdx(nextIdx);
     } else {
       //* 端から端もいける
       nextIdx = (posts.length+shownIdx+which)%posts.length
